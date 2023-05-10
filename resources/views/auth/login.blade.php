@@ -48,7 +48,8 @@
         </div>
         <div class="overlay-container">
             <div class="overlay">
-                <form action="{{ route('auth.login') }}" method="GET">
+                <form action="{{ route('register') }}" method="POST">
+                    @csrf
                     <div class="overlay-panel overlay-right bg-body-secondary">
                         <h1>Hello, Friend!</h1>
                         <p>Enter your personal details and start journey with us</p>

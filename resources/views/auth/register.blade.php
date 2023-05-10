@@ -80,7 +80,8 @@
         </div>
         <div class="overlay-container">
             <div class="overlay">
-                <form action="{{ route('auth.login') }}" method="POST">
+                <form action="{{ route('login') }}" method="POST">
+                    @csrf
                     <div class="overlay-panel overlay-right bg-body-secondary">
                         <h1 class="text-black">Hello, Friend!</h1>
                         <p>Already have an Account??</p>
