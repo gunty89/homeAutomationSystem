@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,9 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::post('/login', 'App\Http\Controllers\LoginController@index');
+Route::get('/signIn', [LoginController::class, 'index'])->name('signIn');
 
-Route::post('/register', 'App\Http\Controllers\RegisterController@index');
+Route::get('/signUp', [RegisterController::class, 'index'])->name('signUp');
+
+
 
