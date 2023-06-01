@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../SMART HOME AUTOMATION SYSTEM"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "black-dashboard-master"
+	}
+}

@@ -53,11 +53,12 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Fortify::authenticateUsing(function (Request $request) {
-            echo '12123';
             $user = User::where('email', $request->email)->first();
 
             if ($user &&
                 Hash::check($request->password, $user->password)) {
+                    $user->lastLogin = now();
+                    $user->save();
                 return $user;
             }
         });

@@ -8,17 +8,17 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-    Black Dashboard 
+    Black Dashboard
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   <!-- Nucleo Icons -->
-  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
   <!-- CSS Files -->
-  <link href="../assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+  <link href="{{ asset('assets/css/black-dashboard.css?v=1.0.0')}}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <link href="{{ asset('assets/demo/demo.css') }}" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -30,7 +30,7 @@
     <div class="sidebar-wrapper" style="background-color: cadetblue;">
       <div class="logo">
         <!-- <a href="javascript:void(0)" class="simple-text logo-mini">
-          
+
         </a> -->
         <a href="javascript:void(0)" class="simple-text logo-sm">
           <h6>SMART HOME AUTOMATION SYSTEM</h6>
@@ -69,8 +69,8 @@
             </a>
           </li>
         -->
-        
-        
+
+
         </ul>
       </div>
     </div>
@@ -196,13 +196,13 @@
                      width: 1119px;
                      height: 420px;
                      border-radius: 10px;
-                 
+
                      display: flex;
                      justify-content: center;
                      align-items: center;
                   }
-               
-                
+
+
                </style>
                 <div class="chart-area">
                   <!--<canvas id="chartBig1"></canvas>-->
@@ -216,7 +216,7 @@
             <div class="card">
               <div class="card-header">
                 <h3>Door</h3>
-           
+
               </div>
               <div class="card-body">
                 <div class="container text-center"><div class="h3 text-success text-muted" >
@@ -280,7 +280,7 @@
             </div>
           </div>
         </div>
-       
+
         </div>
       </div>
       <footer class="footer">
@@ -311,25 +311,25 @@
           <span class="badge dark-badge ml-2"></span>
           <span class="color-label">DARK MODE</span>
         </li>
-       
+
       </ul>
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="../assets/js/core/jquery.min.js"></script>
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="{{ asset('assets/js/core/jquery.min.js') }}"></script>
+  <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+  <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
   <!--  Google Maps Plugin    -->
   <!-- Place this tag in your head or just before your close body tag. -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chart JS -->
-  <script src="../assets/js/plugins/chartjs.min.js"></script>
+  <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
   <!--  Notifications Plugin    -->
-  <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+  <script src="{{ asset('assets/js/plugins/bootstrap-notify.js') }}"></script>
   <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
-  <script src="../assets/demo/demo.js"></script>
+  <script src="{{ asset('assets/js/black-dashboard.min.js?v=1.0.0') }}"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
+  <script src="{{ asset('assets/demo/demo.js') }}"></script>
   <script>
     $(document).ready(function() {
       $().ready(function() {

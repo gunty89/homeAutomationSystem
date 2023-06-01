@@ -22,6 +22,7 @@ return new class extends Migration
             $table->tinyInteger('isAdmin')->default(0);
             $table->tinyInteger('status')->default(0);
             $table->rememberToken();
+            $table->timestamp('lastLogin')->nullable();
             $table->timestamps();
         });
     }
