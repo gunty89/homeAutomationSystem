@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -23,5 +24,6 @@ Route::get('/signIn', [LoginController::class, 'index'])->name('signIn');
 
 Route::get('/signUp', [RegisterController::class, 'index'])->name('signUp');
 
-
+//Dashboard Route
+Route::resource('/dashboard', DashboardController::class);
 
