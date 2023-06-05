@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>
-         Dashboard
+        Black Dashboard
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
@@ -18,6 +18,7 @@
     <link href="{{ asset('assets/css/black-dashboard.css?v=1.0.0') }}" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('assets/demo/demo.css') }}" rel="stylesheet" />
+
 </head>
 
 <body class="">
@@ -37,39 +38,24 @@
                 </div>
                 <ul class="nav">
                     <li class="active ">
-                        <a href="./dashboard.html">
+                        <a href="{{ url('/dashboard') }}">
                             <i class="tim-icons icon-chart-pie-36"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <!----  <li>
-            <a href="./icons.html">
-              <i class="tim-icons icon-atom"></i>
-              <p>Icons</p>
-            </a>
-          </li>
-        -->
                     <li>
-                        <a href="./notifications.html">
-                            <i class="tim-icons icon-bell-55"></i>
-                            <p>Notifications</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./user.html">
+                        <a href="{{ url('/user') }}">
                             <i class="tim-icons icon-single-02"></i>
-                            <p>User Profile</p>
+                            <p>User</p>
                         </a>
                     </li>
-                    <!---- <li>
-            <a href="./settings.html">
-              <i class="tim-icons icon-align-center"></i>
-              <p>Settings</p>
-            </a>
-          </li>
-        -->
 
-
+                    <li>
+                        <a href="{{ url('/setting') }}">
+                            <i class="tim-icons icon-bell-55"></i>
+                            <p>Settings</p>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -97,17 +83,33 @@
                         <ul class="navbar-nav ml-auto">
                             <li class="search-bar input-group">
                                 <button class="btn btn-link" id="search-button" data-toggle="modal"
-                                    data-target="#searchModal"><i class="tim-icons icon-zoom-split"></i>
+                                    data-target="#searchModal">
+                                    <i class="tim-icons icon-zoom-split"></i>
                                     <span class="d-lg-none d-md-block">Search</span>
                                 </button>
                             </li>
+
+                            <!-- Room Dropdown Menu -->
+                            <li class="dropdown nav-item ml-auto">
+                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                    <b>ROOMS</b>
+                                </a>
+                                <ul class="dropdown-menu dropdown-navbar">
+                                    <li class="nav-link"><a href="#" class="nav-item dropdown-item">Room 1</a>
+                                    </li>
+                                    <li class="nav-link"><a href="#" class="nav-item dropdown-item">Room 2</a>
+                                    </li>
+                                    <li class="nav-link"><a href="#" class="nav-item dropdown-item">Room 3</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- End of Room Dropdown Menu -->
+
                             <li class="dropdown nav-item">
                                 <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                     <div class="notification d-none d-lg-block d-xl-block"></div>
                                     <i class="tim-icons icon-sound-wave"></i>
-                                    <p class="d-lg-none">
-                                        Notifications
-                                    </p>
+                                    <p class="d-lg-none">Notifications</p>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
                                     <li class="nav-link"><a href="#" class="nav-item dropdown-item">Mike John
@@ -123,29 +125,14 @@
                                 </ul>
                             </li>
                             <li class="dropdown nav-item">
-                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                    <div class="photo">
-                                        <img src="../assets/img/anime3.png" alt="Profile Photo">
-                                    </div>
-                                    <b class="caret d-none d-lg-block d-xl-block"></b>
-                                    <p class="d-lg-none">
-                                        Log out
-                                    </p>
-                                </a>
                                 <ul class="dropdown-menu dropdown-navbar">
-                                    <li class="nav-link"><a href="javascript:void(0)"
+                                  <li class="nav-link"><a href=" {{ url ('/user')}}"
                                             class="nav-item dropdown-item">Profile</a></li>
                                     <li class="nav-link"><a href="javascript:void(0)"
-                                            class="nav-item dropdown-item">Settings</a></li>
+                                            class="nav-item dropdown-item">Change Password</a></li>
                                     <li class="dropdown-divider"></li>
-                                    <li><a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                            class="dropdown-item"> Logout
-                                        </a>
-                                    </li>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                    </form>
+                                    <li class="nav-link"><a href="javascript:void(0)"
+                                            class="nav-item dropdown-item">Log out</a></li>
                                 </ul>
                             </li>
                             <li class="separator d-lg-none"></li>
@@ -167,53 +154,22 @@
                     </div>
                 </div>
             </div>
+
             <!-- End Navbar -->
             <div class="content">
+
                 <div class="row">
                     <div class="col-12">
                         <div class="card card-chart">
-                            <div class="card-header ">
-                                <div class="row">
-                                    <div class="col-sm-6 text-left">
-                                        <!---- <h5 class="card-category">Entities</h5>
-                    <h2 class="card-title">Performance</h2>-->
-                                    </div>
-                                    <!----  <div class="col-sm-6">
-                    <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
-                      <label class="btn btn-sm btn-primary btn-simple active" id="0">
-                        <input type="radio" name="options" checked>
-                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">EnergyConsumption</span>
-                        <span class="d-block d-sm-none">
-                          <i class="tim-icons icon-single-02"></i>
-                        </span>
-                      </label>
-                      <label class="btn btn-sm btn-primary btn-simple" id="1">
-                        <input type="radio" class="d-none d-sm-none" name="options">
-                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Temperature</span>
-                        <span class="d-block d-sm-none">
-                          <i class="tim-icons icon-gift-2"></i>
-                        </span>
-                      </label>
-                      <label class="btn btn-sm btn-primary btn-simple" id="2">
-                        <input type="radio" class="d-none" name="options">
-                        <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Sessions</span>
-                        <span class="d-block d-sm-none">
-                          <i class="tim-icons icon-tap-02"></i>
-                        </span>
-                      </label>
-                    </div>
-                  </div>-->
-                                </div>
-                            </div>
                             <div class="card-body2">
                                 <style>
                                     .card-body2 {
                                         background-image: url('/assets/img/wallpaper4.jpg');
                                         background-size: cover;
-                                        width: 1119px;
+                                        background-position: center;
+                                        width: 1129px;
                                         height: 420px;
                                         border-radius: 10px;
-
                                         display: flex;
                                         justify-content: center;
                                         align-items: center;
@@ -236,9 +192,9 @@
                             <div class="card-body">
                                 <div class="container text-center">
                                     <div class="h3 text-success text-muted">
-                                        STATUS : ON </div>
+                                        STATUS : OPEN </div>
                                     <div class="container"><button class="btn btn-secondary btn-md">
-                                            <i class="fa fa-fan"></i> Off
+                                            <i class="fa fa-fan"></i> Close
                                         </button>
                                     </div>
                                 </div>

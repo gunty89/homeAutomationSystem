@@ -50,7 +50,8 @@
             </a>
           </li>
         -->
-          <li>
+          
+          <li class="active ">
             <a href="./notifications.html">
               <i class="tim-icons icon-bell-55"></i>
               <p>Notifications</p>
@@ -62,8 +63,7 @@
               <p>User Profile</p>
             </a>
           </li>
-          
-          <!---- <li>
+         <!---- <li>
             <a href="./settings.html">
               <i class="tim-icons icon-align-center"></i>
               <p>Settings</p>
@@ -71,7 +71,6 @@
           </li>
         -->
         
-          
         
         </ul>
       </div>
@@ -121,7 +120,7 @@
               <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                   <div class="photo">
-                    <img src="../assets/img/anime3.png" alt="Profile Photo">
+                    <img src="../assets/img/tariq.jpg" alt="Profile Photo">
                   </div>
                   <b class="caret d-none d-lg-block d-xl-block"></b>
                   <p class="d-lg-none">
@@ -130,7 +129,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-navbar">
                   <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Profile</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Settings</a></li>
+                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Change Password</a></li>
                   <li class="dropdown-divider"></li>
                   <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Log out</a></li>
                 </ul>
@@ -155,19 +154,47 @@
       <!-- End Navbar -->
       <div class="content">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-6">
             <div class="card">
-              <div class="card-header mb-5">
-                
-              
+              <div class="card-header">
+                <h4 class="card-title">Notifications Style</h4>
               </div>
-             
-              
+              <div class="card-body">
+                <div class="alert alert-success">
+                  <span>This is a plain notification</span>
+                </div>
+                <div class="alert alert-success">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="tim-icons icon-simple-remove"></i>
+                  </button>
+                  <span>This is a notification with close button.</span>
+                </div>
+                <div class="alert alert-success alert-with-icon" data-notify="container">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="tim-icons icon-simple-remove"></i>
+                  </button>
+                  <span data-notify="icon" class="tim-icons icon-bell-55"></span>
+                  <span data-notify="message">This is a notification with close button and icon.</span>
+                </div>
+                <div class="alert alert-success alert-with-icon" data-notify="container">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="tim-icons icon-simple-remove"></i>
+                  </button>
+                  <span data-notify="icon" class="tim-icons icon-bell-55"></span>
+                  <span data-notify="message">This is a notification with close button and icon and have many lines.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <footer class="footer">
+    
       </footer>
     </div>
   </div>
@@ -194,7 +221,7 @@
           <span class="badge dark-badge ml-2"></span>
           <span class="color-label">DARK MODE</span>
         </li>
-        
+      
       </ul>
     </div>
   </div>
