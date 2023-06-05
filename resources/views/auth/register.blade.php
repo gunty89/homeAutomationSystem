@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Radius - Signin/Signup</title>
+    <title>Home Automation System</title>
     {{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> --}}
     <link rel="stylesheet" href="{{ asset('assets/CSS/style.css') }}">
 </head>
@@ -22,7 +22,7 @@
                     class="form-control rounded @error('name') is-invalid @enderror" name="firstname"
                     value="{{ old('firstname') }}" required autocomplete="name" autofocus>
 
-                @error('name')
+                @error('firstname')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -36,7 +36,7 @@
                     class="form-control @error('name') is-invalid @enderror" name="surname" value="{{ old('surname') }}"
                     required autocomplete="name" autofocus>
 
-                @error('name')
+                @error('surname')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -56,6 +56,8 @@
                     </span>
                 @enderror
 
+                
+
 
                 {{-- <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label> --}}
 
@@ -73,7 +75,7 @@
                 {{-- <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label> --}}
 
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required
-                    autocomplete="new-password" placeholder="Confirm Passwprd">
+                    autocomplete="new-password" placeholder="Confirm Password">
 
                 <div class="row mb-0">
                     <div class="col-md-6 offset-md-4">

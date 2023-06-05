@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Illuminate\Auth\Events\Registered;
+
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -40,5 +42,6 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
             'lastLogin' => Carbon::now(),
         ]);
+        event(new Registered($input));
     }
 }
