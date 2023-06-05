@@ -27,7 +27,47 @@ Route::get('/signIn', [LoginController::class, 'index'])->name('signIn');
 Route::get('/signUp', [RegisterController::class, 'index'])->name('signUp');
 
 //Dashboard Route
-Route::resource('/dashboard', DashboardController::class);
+Route::resource('/dashboard', DashboardController::class)->middleware(['auth', 'verified']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //User Route
 Route::resource('/user', UserController::class);
