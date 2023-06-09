@@ -6,6 +6,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DeviceController;
+use App\Models\Device;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,45 +32,47 @@ Route::get('/signUp', [RegisterController::class, 'index'])->name('signUp');
 //Dashboard Route
 Route::resource('/dashboard', DashboardController::class)->middleware(['auth', 'verified']);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //User Route
 Route::resource('/user', UserController::class);
+
+//Device Route
+Route::resource('/device', DeviceController::class);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

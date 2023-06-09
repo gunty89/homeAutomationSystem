@@ -13,31 +13,14 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <!-- Nucleo Icons -->
-    <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
     <!-- CSS Files -->
-    <link href="{{ asset('assets/css/black-dashboard.css?v=1.0.0') }}" rel="stylesheet" />
+    <link href="../assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="{{ asset('assets/demo/demo.css') }}" rel="stylesheet" />
-
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-  <title>
-    Black Dashboard
-  </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-  <!-- Nucleo Icons -->
-  <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link href="{{ asset('assets/css/black-dashboard.css?v=1.0.0')}}" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="{{ asset('assets/demo/demo.css') }}" rel="stylesheet" />
+    <link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body>
+<body class="">
     <div class="wrapper">
         @include('layouts.sidebar')
         <div class="main-panel">
@@ -52,7 +35,7 @@
                                 <span class="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                        <a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
+                        <a class="navbar-brand" href="javascript:void(0)">Settings</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -64,33 +47,17 @@
                         <ul class="navbar-nav ml-auto">
                             <li class="search-bar input-group">
                                 <button class="btn btn-link" id="search-button" data-toggle="modal"
-                                    data-target="#searchModal">
-                                    <i class="tim-icons icon-zoom-split"></i>
+                                    data-target="#searchModal"><i class="tim-icons icon-zoom-split"></i>
                                     <span class="d-lg-none d-md-block">Search</span>
                                 </button>
                             </li>
-
-                            <!-- Room Dropdown Menu -->
-                            <li class="dropdown nav-item ml-auto">
-                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                    <b>ROOMS</b>
-                                </a>
-                                <ul class="dropdown-menu dropdown-navbar">
-                                    <li class="nav-link"><a href="#" class="nav-item dropdown-item">Room 1</a>
-                                    </li>
-                                    <li class="nav-link"><a href="#" class="nav-item dropdown-item">Room 2</a>
-                                    </li>
-                                    <li class="nav-link"><a href="#" class="nav-item dropdown-item">Room 3</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- End of Room Dropdown Menu -->
-
                             <li class="dropdown nav-item">
                                 <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                     <div class="notification d-none d-lg-block d-xl-block"></div>
                                     <i class="tim-icons icon-sound-wave"></i>
-                                    <p class="d-lg-none">Notifications</p>
+                                    <p class="d-lg-none">
+                                        Notifications
+                                    </p>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
                                     <li class="nav-link"><a href="#" class="nav-item dropdown-item">Mike John
@@ -116,28 +83,16 @@
                                     </p>
                                 </a>
                                 <ul class="dropdown-menu dropdown-navbar">
-                                    <li class="nav-link">
-                                        <a href=" {{ url('/user') }}" class="nav-item dropdown-item">Profile
-                                        </a>
-                                    </li>
-                                    <li class="nav-link">
-                                        <a href="javascript:void(0)" class="nav-item dropdown-item">Change Password
-                                        </a>
-                                    </li>
+                                    <li class="nav-link"><a href="javascript:void(0)"
+                                            class="nav-item dropdown-item">Profile</a></li>
+                                    <li class="nav-link"><a href="javascript:void(0)"
+                                            class="nav-item dropdown-item">Change Password</a></li>
                                     <li class="dropdown-divider"></li>
-                                    <li><a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                            class="dropdown-item"> Logout
-                                        </a>
-                                    </li>
+                                    <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Log
+                                            out</a></li>
                                 </ul>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                </form>
-                        </ul>
-                        </li>
-                        <li class="separator d-lg-none"></li>
+                            </li>
+                            <li class="separator d-lg-none"></li>
                         </ul>
                     </div>
                 </div>
@@ -156,185 +111,53 @@
                     </div>
                 </div>
             </div>
-
             <!-- End Navbar -->
             <div class="content">
-
                 <div class="row">
-                    <div class="col-12">
-                        <div class="card card-chart">
-                            <div class="card-body2">
-                                <style>
-                                    .card-body2 {
-                                        background-image: url('/assets/img/wallpaper4.jpg');
-                                        background-size: 100%;
-                                        background-position: center;
-                                        width: 100%;
-                                        height: 420px;
-                                        border-radius: 10px;
-                                        display: flex;
-                                        justify-content: center;
-                                        align-items: center;
-                                    }
-                                </style>
-                                <div class="chart-area">
-                                    <!--<canvas id="chartBig1"></canvas>-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h3>Door</h3>
-
+                                <h4 class="card-title">Notifications Style</h4>
                             </div>
                             <div class="card-body">
-                                <div class="container text-center">
-                                    <div class="h3 text-success text-muted">
-                                        STATUS : OPEN </div>
-                                    <div class="container"><button class="btn btn-secondary btn-md">
-                                            <i class="fa fa-fan"></i> Close
-                                        </button>
-                                    </div>
+                                <div class="alert alert-success">
+                                    <span>This is a plain notification</span>
                                 </div>
-                                <div class="card-footer">
-                                    <br>
+                                <div class="alert alert-success">
+                                    <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
+                                        aria-label="Close">
+                                        <i class="tim-icons icon-simple-remove"></i>
+                                    </button>
+                                    <span>This is a notification with close button.</span>
                                 </div>
-                                <div class="chart-area">
-                                    <!--- <canvas id="chartLinePurple"></canvas>-->
+                                <div class="alert alert-success alert-with-icon" data-notify="container">
+                                    <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
+                                        aria-label="Close">
+                                        <i class="tim-icons icon-simple-remove"></i>
+                                    </button>
+                                    <span data-notify="icon" class="tim-icons icon-bell-55"></span>
+                                    <span data-notify="message">This is a notification with close button and
+                                        icon.</span>
+                                </div>
+                                <div class="alert alert-success alert-with-icon" data-notify="container">
+                                    <button type="button" aria-hidden="true" class="close" data-dismiss="alert"
+                                        aria-label="Close">
+                                        <i class="tim-icons icon-simple-remove"></i>
+                                    </button>
+                                    <span data-notify="icon" class="tim-icons icon-bell-55"></span>
+                                    <span data-notify="message">This is a notification with close button and icon and
+                                        have many lines.</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="card ">
-                            <div class="card-header">
-                                <h3>Light</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="container text-center">
-                                    <div class="h3 text-success text-muted">
-                                        STATUS : ON </div>
-                                    <div class="container"><button class="btn btn-secondarybtn-md">
-                                            <i class="fa fa-fan"></i> Off
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <br>
-                                </div>
-                                <div class="chart-area">
-                                    <!---- <canvas id="CountryChart"></canvas>-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card ">
-                            <div class="card-header">
-                                <h3>Fan</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="container text-center">
-                                    <div class="h3 text-success text-muted">
-                                        STATUS : ON </div>
-                                    <div class="container"><button class="btn btn-secondary btn-md">
-                                            <i class="fa fa-fan"></i> Off
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <br>
-                                </div>
-                                <div class="chart-area">
-                                    <!--- <canvas id="chartLineGreen"></canvas>-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="card">
-              <div class="card-header">
-                <h3>Door</h3>
 
-              </div>
-              <div class="card-body">
-                <div class="container text-center"><div class="h3 text-success text-muted" >
-                  STATUS : ON </div>
-                  <div class="container"><button class="btn btn-secondary btn-md">
-                      <i class="fa fa-fan"></i> Off
-                      </button>
-                      </div>
-                 </div>
-                 <div class="card-footer">
-                  <br>
-                 </div>
-                <div class="chart-area">
-                 <!--- <canvas id="chartLinePurple"></canvas>-->
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="card ">
-              <div class="card-header">
-                <h3>Light</h3>
-              </div>
-              <div class="card-body">
-                <div class="container text-center"><div class="h3 text-success text-muted" >
-                  STATUS : ON </div>
-                  <div class="container"><button class="btn btn-secondarybtn-md">
-                      <i class="fa fa-fan"></i> Off
-                      </button>
-                      </div>
-                 </div>
-                 <div class="card-footer">
-                  <br>
-                 </div>
-                <div class="chart-area">
-                 <!---- <canvas id="CountryChart"></canvas>-->
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="card ">
-              <div class="card-header">
-                 <h3>Fan</h3>
-              </div>
-              <div class="card-body">
-                <div class="container text-center"><div class="h3 text-success text-muted" >
-               STATUS : ON </div>
-               <div class="container"><button class="btn btn-secondary btn-md">
-                   <i class="fa fa-fan"></i> Off
-                   </button>
-                   </div>
-              </div>
-              <div class="card-footer">
-                <br>
-              </div>
-                <div class="chart-area">
-                <!--- <canvas id="chartLineGreen"></canvas>-->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
             </div>
         </div>
-        <footer class="footer">
-            <br>
-        </footer>
+    </div>
+    </div>
+    </div>
     </div>
     </div>
     <div class="fixed-plugin">
@@ -365,20 +188,20 @@
         </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="{{ asset('assets/js/core/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
+    <script src="../assets/js/core/jquery.min.js"></script>
+    <script src="../assets/js/core/popper.min.js"></script>
+    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <!--  Google Maps Plugin    -->
     <!-- Place this tag in your head or just before your close body tag. -->
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <!-- Chart JS -->
-    <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
+    <script src="../assets/js/plugins/chartjs.min.js"></script>
     <!--  Notifications Plugin    -->
-    <script src="{{ asset('assets/js/plugins/bootstrap-notify.js') }}"></script>
+    <script src="../assets/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="{{ asset('assets/js/black-dashboard.min.js?v=1.0.0') }}"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
-    <script src="{{ asset('assets/demo/demo.js') }}"></script>
+    <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
+    <script src="../assets/demo/demo.js"></script>
     <script>
         $(document).ready(function() {
             $().ready(function() {
@@ -488,13 +311,6 @@
                     $('body').removeClass('white-content');
                 });
             });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            // Javascript method's body can be found in assets/js/demos.js
-            demo.initDashboardPageCharts();
-
         });
     </script>
     <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
