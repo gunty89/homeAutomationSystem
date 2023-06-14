@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Device;
 use Illuminate\Http\Request;
 
 class DeviceController extends Controller
@@ -13,7 +14,9 @@ class DeviceController extends Controller
      */
     public function index()
     {
-        //
+        $devices = Device::select('*')->get();
+        return view('device', compact('devices'));
+        // echo $devices;
     }
 
     /**

@@ -8,7 +8,7 @@
             </a>
         </div>
         <ul class="nav">
-            <li class="active ">
+            <li class="">
                 <a href="{{ url('/dashboard') }}">
                     <i class="tim-icons icon-chart-pie-36"></i>
                     <p>Dashboard</p>

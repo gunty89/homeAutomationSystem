@@ -45,7 +45,12 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        //
+        if ($id == 1) {
+            return view('master');
+        } elseif ($id == 2) {
+            return view('store');
+        }
+
     }
 
     /**

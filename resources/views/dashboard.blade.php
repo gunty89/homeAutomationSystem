@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>
-        Black Dashboard
+        SMART HOME
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
@@ -36,7 +36,7 @@
                                 <span class="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                        <a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
+                        <a class="navbar-brand" href="javascript:void(0)">Dashboard/ Sitting Room</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -60,11 +60,11 @@
                                     <b>ROOMS</b>
                                 </a>
                                 <ul class="dropdown-menu dropdown-navbar">
-                                    <li class="nav-link"><a href="#" class="nav-item dropdown-item">Room 1</a>
+                                    <li class="nav-link"><a href="{{ route('dashboard.index') }}" class="nav-item dropdown-item">Sitting Room</a>
                                     </li>
-                                    <li class="nav-link"><a href="#" class="nav-item dropdown-item">Room 2</a>
+                                    <li class="nav-link"><a href="{{ route('dashboard.show', 1) }}" class="nav-item dropdown-item">Master Room</a>
                                     </li>
-                                    <li class="nav-link"><a href="#" class="nav-item dropdown-item">Room 3</a>
+                                    <li class="nav-link"><a href="{{ route('dashboard.show', 2) }}" class="nav-item dropdown-item">Store Room</a>
                                     </li>
                                 </ul>
                             </li>
