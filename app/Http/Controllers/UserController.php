@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,7 +13,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user');
+        $users = User::all();
+        // echo $users;
+        return view('user', compact('users'));
         //
     }
 
@@ -24,6 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this-> authorize('userCreate');
         //
     }
 
@@ -80,6 +83,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('userDelete');
         //
     }
 }

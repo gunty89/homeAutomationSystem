@@ -21,23 +21,28 @@ use App\Models\Device;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
+Route::group(['middleware' => ['auth', 'verified']], function(){
+    Route::get('/', function () {
+        return view('auth.login');
+    });
+
+    Route::get('/signIn', [LoginController::class, 'index'])->name('signIn');
+
+    Route::get('/signUp', [RegisterController::class, 'index'])->name('signUp');
+
+    //Dashboard Route
+    Route::resource('/dashboard', DashboardController::class)->middleware(['auth', 'verified']);
+
+    //User Route
+    Route::resource('/user', UserController::class);
+
+    //Device Route
+    Route::resource('/device', DeviceController::class);
+
+    //Profile Route
+    Route::view('/profile', [LoginController::class, 'profile'])->name('profile');
+
 });
-
-Route::get('/signIn', [LoginController::class, 'index'])->name('signIn');
-
-Route::get('/signUp', [RegisterController::class, 'index'])->name('signUp');
-
-//Dashboard Route
-Route::resource('/dashboard', DashboardController::class)->middleware(['auth', 'verified']);
-
-//User Route
-Route::resource('/user', UserController::class);
-
-//Device Route
-Route::resource('/device', DeviceController::class);
-
 
 
 

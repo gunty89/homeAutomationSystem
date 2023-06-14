@@ -6,19 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <title> SMART HOME </title>
+    <title> Smart Home Automation System </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <!-- Nucleo Icons -->
-    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
-    <link href="../assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+    <link href="{{ asset('assets/css/black-dashboard.css?v=1.0.0') }}" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="../assets/demo/demo.css" rel="stylesheet" />
+    <link href="{{ asset('assets/demo/demo.css') }}" rel="stylesheet" />
+
 </head>
 
-<body class="">
+<body>
     <div class="wrapper">
         @include('layouts.sidebar')
         <div class="main-panel">
@@ -33,7 +34,7 @@
                                 <span class="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                        <a class="navbar-brand" href="javascript:void(0)">Devices</a>
+                        <a class="navbar-brand" href="javascript:void(0)">Store Room</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -45,17 +46,33 @@
                         <ul class="navbar-nav ml-auto">
                             <li class="search-bar input-group">
                                 <button class="btn btn-link" id="search-button" data-toggle="modal"
-                                    data-target="#searchModal"><i class="tim-icons icon-zoom-split"></i>
+                                    data-target="#searchModal">
+                                    <i class="tim-icons icon-zoom-split"></i>
                                     <span class="d-lg-none d-md-block">Search</span>
                                 </button>
                             </li>
+
+                            <!-- Room Dropdown Menu -->
+                            <li class="dropdown nav-item ml-auto">
+                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                    <b>ROOMS</b>
+                                </a>
+                                <ul class="dropdown-menu dropdown-navbar">
+                                    <li class="nav-link"><a href="{{ route('dashboard.index') }}" class="nav-item dropdown-item">Sitting Room</a>
+                                    </li>
+                                    <li class="nav-link"><a href="{{ route('dashboard.show', 1) }}" class="nav-item dropdown-item">Master Room</a>
+                                    </li>
+                                    <li class="nav-link"><a href="{{ route('dashboard.show', 2) }}" class="nav-item dropdown-item">Store Room</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- End of Room Dropdown Menu -->
+
                             <li class="dropdown nav-item">
                                 <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                     <div class="notification d-none d-lg-block d-xl-block"></div>
                                     <i class="tim-icons icon-sound-wave"></i>
-                                    <p class="d-lg-none">
-                                        Notifications
-                                    </p>
+                                    <p class="d-lg-none">Notifications</p>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
                                     <li class="nav-link"><a href="#" class="nav-item dropdown-item">Mike John
@@ -81,16 +98,28 @@
                                     </p>
                                 </a>
                                 <ul class="dropdown-menu dropdown-navbar">
-                                    <li class="nav-link"><a href=" {{ url('/profile') }}"
-                                            class="nav-item dropdown-item">Profile</a></li>
-                                    <li class="nav-link"><a href="javascript:void(0)"
-                                            class="nav-item dropdown-item">Change Password</a></li>
+                                    <li class="nav-link">
+                                        <a href=" {{ url('/user') }}" class="nav-item dropdown-item">Profile
+                                        </a>
+                                    </li>
+                                    <li class="nav-link">
+                                        <a href="javascript:void(0)" class="nav-item dropdown-item">Change Password
+                                        </a>
+                                    </li>
                                     <li class="dropdown-divider"></li>
-                                    <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Log
-                                            out</a></li>
+                                    <li><a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                            class="dropdown-item"> Logout
+                                        </a>
+                                    </li>
                                 </ul>
-                            </li>
-                            <li class="separator d-lg-none"></li>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                </form>
+                        </ul>
+                        </li>
+                        <li class="separator d-lg-none"></li>
                         </ul>
                     </div>
                 </div>
@@ -109,133 +138,112 @@
                     </div>
                 </div>
             </div>
+
             <!-- End Navbar -->
             <div class="content">
 
-                <div class="col-12">
-                    <div class="card mb-4">
-                        <div class="card-header pb-0">
-                            <h6></h6>
-                        </div>
-                        <div class="row">
-                            <div class="col ms-2">
-                                <button class="btn bg-gradient-info mb-0" href="" type="button"
-                                    class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#addNewStaffModal"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New
-                                    Device</button>
-                            </div>
-                            <div class="col input-group me-6 ">
-                                <span class="input-group-text text-body"><i class="fas fa-search"
-                                        aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" id="myStaffNamesInput"
-                                    onkeyup="myFunction(id,'staffTable')" placeholder="Search Names...">
-                            </div>
-                        </div><br>
-                        <div class="card-body px-0 pt-0 pb-2">
-                            <div class=" p-0">
-                                <table class="table align-items-center mb-0 table-striped table-bordered table-hover"
-                                    id="staffTable">
-                                    <thead>
-                                        <tr>
-                                            {{-- <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder opacity-20" onclick="sortTable(0, 'staffTable')">StaffId</th> --}}
-                                            <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-20  ps-2"
-                                                onclick="sortTable(0, 'staffTable')">Device Name</th>
-                                            <th
-                                                class="text-center text-uppercase text-xxs font-weight-bolder opacity-20">
-                                                Model</th>
-                                            <th
-                                                class="text-center text-uppercase text-xxs font-weight-bolder opacity-20 ps-2">
-                                                Type</th>
-                                            <th
-                                                class="text-center text-uppercase text-xxs font-weight-bolder opacity-20">
-                                                Status</th>
-                                            <th class="opacity-7">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if ($devices)
-
-                                            @foreach ($devices as $device)
-                                                <tr>
-                                                    <td>
-                                                        <p class="text-xs text-center font-weight- mb-0">
-                                                            {{ $device->name }}</p>
-                                                        <p class="text-xs text-center text-secondary mb-0">
-                                                        </p>
-                                                    </td>
-                                                    <td>
-                                                        <p class="text-xs text-center font-weight- mb-0">
-                                                            {{ $device->model }}</p>
-                                                        <p class="text-xs text-center text-secondary mb-0">
-                                                        </p>
-                                                    </td>
-                                                    <td class="align-middle text-center">
-                                                        @if ($device->type == 0)
-                                                            <span class="text-secondary text-xs font-weight-"> Pin
-                                                            </span>
-                                                        @else
-                                                            <span
-                                                                class="text-secondary text-xs font-weight-"> Round
-                                                            </span>
-                                                        @endif
-                                                    </td>
-                                                    <td class="align-middle text-center text-sm">
-                                                        @if ($device->status == 0)
-                                                            <span
-                                                                class="badge badge-sm bg-gradient-success">WORKING</span>
-                                                        @else
-                                                            <span class="badge badge-sm bg-gradient-success"> FAULT
-                                                            </span>
-                                                        @endif
-                                                    </td>
-                                                    <td class="align-middle">
-                                                        <div class="dropdown">
-                                                            <button class="btn btn-link" id="dropdownMenuButton1"
-                                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="fa fa-ellipsis-v text-xs"></i>
-                                                            </button>
-                                                            <ul class="dropdown-menu"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item"
-                                                                        href="{{ route('device.show', $device->deviceId) }}">View</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item viewStaff"
-                                                                        data-bs-toggle="offcanvas"
-                                                                        data-bs-target="#demo"
-                                                                        data-bs-staff_id="{{ $device->deviceId }}">
-                                                                        Balance
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <form
-                                                                        action="{{ route('device.destroy', $device->deviceId) }}"
-                                                                        method="POST">
-                                                                        @method('DELETE')
-                                                                        @csrf
-                                                                        <button class="dropdown-item link-danger"
-                                                                            id="deleteLink"
-                                                                            type="submit">Delete</button>
-                                                                    </form>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-
-                                        @endif
-                                    </tbody>
-                                </table><br>
-                                {{-- <div class="d-flex justify-content-center">
-                                    {!! $users->links() !!}
-                                </div> --}}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-chart">
+                            <div class="card-body2">
+                                <style>
+                                    .card-body2 {
+                                        background-image: url('/assets/img/wallpaper4.jpg');
+                                        background-size: 100%;
+                                        background-position: center;
+                                        width: 100%;
+                                        height: 420px;
+                                        border-radius: 10px;
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                    }
+                                </style>
+                                <div class="chart-area">
+                                    <!--<canvas id="chartBig1"></canvas>-->
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Door</h3>
 
+                            </div>
+                            <div class="card-body">
+                                <div class="container text-center">
+                                    <div class="h3 text-success text-muted">
+                                        STATUS : OPEN </div>
+                                    <div class="container"><button class="btn btn-secondary btn-md">
+                                            <i class="fa fa-fan"></i> Close
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <br>
+                                </div>
+                                <div class="chart-area">
+                                    <!--- <canvas id="chartLinePurple"></canvas>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card ">
+                            <div class="card-header">
+                                <h3>Light</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="container text-center">
+                                    <div class="h3 text-success text-muted">
+                                        STATUS : ON </div>
+                                    <div class="container"><button class="btn btn-secondarybtn-md">
+                                            <i class="fa fa-fan"></i> Off
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <br>
+                                </div>
+                                <div class="chart-area">
+                                    <!---- <canvas id="CountryChart"></canvas>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card ">
+                            <div class="card-header">
+                                <h3>Fan</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="container text-center">
+                                    <div class="h3 text-success text-muted">
+                                        STATUS : ON </div>
+                                    <div class="container"><button class="btn btn-secondary btn-md">
+                                            <i class="fa fa-fan"></i> Off
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <br>
+                                </div>
+                                <div class="chart-area">
+                                    <!--- <canvas id="chartLineGreen"></canvas>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
+        <footer class="footer">
+            <br>
+        </footer>
     </div>
     </div>
     <div class="fixed-plugin">
@@ -261,25 +269,25 @@
                     <span class="badge dark-badge ml-2"></span>
                     <span class="color-label">DARK MODE</span>
                 </li>
+
             </ul>
         </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="../assets/js/core/jquery.min.js"></script>
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap.min.js"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="{{ asset('assets/js/core/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
     <!--  Google Maps Plugin    -->
     <!-- Place this tag in your head or just before your close body tag. -->
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <!-- Chart JS -->
-    <script src="../assets/js/plugins/chartjs.min.js"></script>
+    <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
     <!--  Notifications Plugin    -->
-    <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+    <script src="{{ asset('assets/js/plugins/bootstrap-notify.js') }}"></script>
     <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
-    <!-- Black Dashboard DEMO methods, don't include it in your project! -->
-    <script src="../assets/demo/demo.js"></script>
+    <script src="{{ asset('assets/js/black-dashboard.min.js?v=1.0.0') }}"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
+    <script src="{{ asset('assets/demo/demo.js') }}"></script>
     <script>
         $(document).ready(function() {
             $().ready(function() {
@@ -391,6 +399,13 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            // Javascript method's body can be found in assets/js/demos.js
+            demo.initDashboardPageCharts();
+
+        });
+    </script>
     <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
     <script>
         window.TrackJS &&
@@ -399,7 +414,6 @@
                 application: "black-dashboard-free"
             });
     </script>
-    <script src="{{ asset('assets/js/myJavascript.js') }}"></script>
 </body>
 
 </html>
