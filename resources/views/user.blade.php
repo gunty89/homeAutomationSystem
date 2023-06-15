@@ -203,34 +203,13 @@
                                                     </td>
                                                     <td class="align-middle">
                                                         <div class="dropdown">
-                                                            <button class="btn btn-link" id="dropdownMenuButton1"
-                                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="fa fa-ellipsis-v text-xs"></i>
-                                                            </button>
-                                                            <ul class="dropdown-menu"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item"
-                                                                        href="{{ route('user.show', $user->userId) }}">View</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item viewStaff"
-                                                                        data-bs-toggle="offcanvas"
-                                                                        data-bs-target="#demo"
-                                                                        data-bs-staff_id="{{ $user->userId }}">
-                                                                        Balance
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <form
-                                                                        action="{{ route('user.destroy', $user->userId) }}"
-                                                                        method="POST">
-                                                                        @method('DELETE')
-                                                                        @csrf
-                                                                        <button class="dropdown-item link-danger"
-                                                                            id="deleteLink"
-                                                                            type="submit">Delete</button>
-                                                                    </form>
-                                                                </li>
-                                                            </ul>
+                                                            <div class="dropdown-toggle" data-toggle="dropdown">
+                                                                <i class="fas fa-ellipsis-v"></i>
+                                                              </div>
+                                                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                <a class="dropdown-item" href="#">View</a>
+                                                                <a class="dropdown-item" href="#">Delete</a>
+                                                              </div>
                                                         </div>
                                                     </td>
                                                 </tr>

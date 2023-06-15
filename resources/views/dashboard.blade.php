@@ -166,7 +166,7 @@
                             <div class="card-body2">
                                 <style>
                                     .card-body2 {
-                                        background-image: url('/assets/img/wallpaper4.jpg');
+                                        background-image: url('/assets/img/Sitting.jpg');
                                         background-size: 100%;
                                         background-position: center;
                                         width: 100%;
@@ -259,7 +259,7 @@
               </div>
             </div>
           </div>
-        </div>
+        {{-- </div>
         <div class="row">
           <div class="col-lg-4">
             <div class="card">
@@ -328,7 +328,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> --}}
 
             </div>
         </div>
