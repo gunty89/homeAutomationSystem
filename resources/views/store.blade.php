@@ -148,7 +148,7 @@
                             <div class="card-body2">
                                 <style>
                                     .card-body2 {
-                                        background-image: url('/assets/img/wallpaper4.jpg');
+                                        background-image: url('/assets/img/Store-room.jpg');
                                         background-size: 100%;
                                         background-position: center;
                                         width: 100%;

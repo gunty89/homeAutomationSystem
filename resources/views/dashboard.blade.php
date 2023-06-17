@@ -19,6 +19,22 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('assets/demo/demo.css') }}" rel="stylesheet" />
 
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <title>
+    Black Dashboard
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <!-- Nucleo Icons -->
+  <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link href="{{ asset('assets/css/black-dashboard.css?v=1.0.0')}}" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="{{ asset('assets/demo/demo.css') }}" rel="stylesheet" />
 </head>
 
 <body>
@@ -150,7 +166,7 @@
                             <div class="card-body2">
                                 <style>
                                     .card-body2 {
-                                        background-image: url('/assets/img/wallpaper4.jpg');
+                                        background-image: url('/assets/img/Sitting.jpg');
                                         background-size: 100%;
                                         background-position: center;
                                         width: 100%;
@@ -240,6 +256,79 @@
                         </div>
                     </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        {{-- </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="card">
+              <div class="card-header">
+                <h3>Door</h3>
+
+              </div>
+              <div class="card-body">
+                <div class="container text-center"><div class="h3 text-success text-muted" >
+                  STATUS : ON </div>
+                  <div class="container"><button class="btn btn-secondary btn-md">
+                      <i class="fa fa-fan"></i> Off
+                      </button>
+                      </div>
+                 </div>
+                 <div class="card-footer">
+                  <br>
+                 </div>
+                <div class="chart-area">
+                 <!--- <canvas id="chartLinePurple"></canvas>-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card ">
+              <div class="card-header">
+                <h3>Light</h3>
+              </div>
+              <div class="card-body">
+                <div class="container text-center"><div class="h3 text-success text-muted" >
+                  STATUS : ON </div>
+                  <div class="container"><button class="btn btn-secondarybtn-md">
+                      <i class="fa fa-fan"></i> Off
+                      </button>
+                      </div>
+                 </div>
+                 <div class="card-footer">
+                  <br>
+                 </div>
+                <div class="chart-area">
+                 <!---- <canvas id="CountryChart"></canvas>-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card ">
+              <div class="card-header">
+                 <h3>Fan</h3>
+              </div>
+              <div class="card-body">
+                <div class="container text-center"><div class="h3 text-success text-muted" >
+               STATUS : ON </div>
+               <div class="container"><button class="btn btn-secondary btn-md">
+                   <i class="fa fa-fan"></i> Off
+                   </button>
+                   </div>
+              </div>
+              <div class="card-footer">
+                <br>
+              </div>
+                <div class="chart-area">
+                <!--- <canvas id="chartLineGreen"></canvas>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> --}}
 
             </div>
         </div>
