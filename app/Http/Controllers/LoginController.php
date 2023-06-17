@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -11,7 +12,14 @@ class LoginController extends Controller
     }
 
     public function profile(){
-        return view('profile');
+        $id = auth()->user()->userId;
+        $user = User::findOrFail($id);
+        return view('profile', compact('user'));
+    }
+
+    public function update(Request $req, $id){
+        
+
     }
 
     //

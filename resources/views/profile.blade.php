@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <title> Smart Home Automation System    </title>
+    <title> Smart Home Automation System </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -118,27 +118,27 @@
                                 <h5 class="title">Edit Profile</h5>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form action="{{ route('profile.update',$user->userId) }}" method="POST">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-5 pr-md-1">
                                             <div class="form-group">
-                                                <label>Occupation</label>
-                                                <input type="text" class="form-control" placeholder="Occupation"
-                                                    value="Doctor">
+                                                <label>Role</label>
+                                                @if ($user->isAdmin == 1)
+                                                    <input type="text" class="form-control" placeholder="Role"
+                                                        name="role" value=" Admin" disabled>
+                                                @else
+                                                    <input type="text" class="form-control" placeholder="Role"
+                                                        name="role" value="User">
+                                                @endif
+
                                             </div>
                                         </div>
-                                        <div class="col-md-3 px-md-1">
-                                            <div class="form-group">
-                                                <label>Username</label>
-                                                <input type="text" class="form-control" placeholder="Username"
-                                                    value="Ghost">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 pl-md-1">
+                                        <div class="col-md-7 pl-md-1">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" class="form-control"
-                                                    placeholder="tariq@gmail.com">
+                                                <input type="email" class="form-control" placeholder="email"
+                                                    name="email" value="{{ $user->email }}" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -146,50 +146,51 @@
                                         <div class="col-md-6 pr-md-1">
                                             <div class="form-group">
                                                 <label>First Name</label>
-                                                <input type="text" class="form-control" placeholder="Company"
-                                                    value="Mike">
+                                                <input type="text" class="form-control" name="firstname"
+                                                    placeholder="Company" value="{{ $user->firstName }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6 pl-md-1">
                                             <div class="form-group">
                                                 <label>Last Name</label>
-                                                <input type="text" class="form-control" placeholder="Last Name"
-                                                    value="St.Patrick">
+                                                <input type="text" class="form-control" name="surname"
+                                                    placeholder="Last Name" value="{{ $user->surname }}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Address</label>
-                                                <input type="text" class="form-control" placeholder="Home Address"
-                                                    value="Queens">
+                                                <label>City</label>
+                                                <input type="text" class="form-control" name="city"
+                                                    placeholder="City" value="{{ $user->city }}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4 pr-md-1">
                                             <div class="form-group">
-                                                <label>City</label>
-                                                <input type="text" class="form-control" placeholder="City"
-                                                    value="Tariq">
+                                                <label>District</label>
+                                                <input type="text" name="district" class="form-control"
+                                                    placeholder="District" value="{{ $user->district }}">
                                             </div>
                                         </div>
                                         <div class="col-md-4 px-md-1">
                                             <div class="form-group">
-                                                <label>Country</label>
-                                                <input type="text" class="form-control" placeholder="Country"
-                                                    value="St.Patrick">
+                                                <label>Street</label>
+                                                <input type="text" name="street" class="form-control"
+                                                    placeholder="Street" value="{{ $user->street }}">
                                             </div>
                                         </div>
                                         <div class="col-md-4 pl-md-1">
                                             <div class="form-group">
                                                 <label>Phone</label>
-                                                <input type="text" class="form-control" placeholder="Phone">
+                                                <input type="text" class="form-control" name="phone"
+                                                    placeholder="Phone" value="{{ $user->phoneNumber }}">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         <div class="col-md-8">
                                             <div class="form-group">
                                                 <label>About Me</label>
@@ -197,12 +198,13 @@
                                                     value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
                                             </div>
                                         </div>
+                                    </div> --}}
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-fill btn-secondary">Save</button>
                                     </div>
                                 </form>
                             </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-fill btn-secondary">Save</button>
-                            </div>
+
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -216,10 +218,14 @@
                                     <div class="block block-four"></div>
                                     <a href="javascript:void(0)">
                                         <img class="avatar" src="../assets/img/tariq.jpg" alt="...">
-                                        <h5 class="title">Tariq St.Patrick</h5>
+                                        <h5 class="title">{{ $user->firstName }} {{ $user->surname }}</h5>
                                     </a>
                                     <p class="description">
-                                        Ceo/Co-Founder
+                                        @if ($user->isAdmin == 1)
+                                            Admin
+                                        @else
+                                            User
+                                        @endif
                                     </p>
                                 </div>
                                 </p>

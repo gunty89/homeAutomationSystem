@@ -40,7 +40,10 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
     Route::resource('/device', DeviceController::class);
 
     //Profile Route
-    Route::view('/profile', [LoginController::class, 'profile'])->name('profile');
+    Route::get('/profile', [LoginController::class, 'profile'])->name('profile');
+
+     //Profile Route
+     Route::post('/profile/update/{id}', [LoginController::class, 'update'])->name('profile.update');
 
 });
 
