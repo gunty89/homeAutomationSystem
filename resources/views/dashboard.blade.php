@@ -101,7 +101,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-navbar">
                                     <li class="nav-link">
-                                        <a href=" {{ url('/user') }}" class="nav-item dropdown-item">Profile
+                                        <a href=" {{ url('/profile') }}" class="nav-item dropdown-item">Profile
                                         </a>
                                     </li>
                                     <li class="nav-link">
