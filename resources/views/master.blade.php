@@ -103,7 +103,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-link">
-                                        <a href="javascript:void(0)" class="nav-item dropdown-item">Change Password
+                                        <a href="{{ url('/profile/password')}}" class="nav-item dropdown-item">Change Password
                                         </a>
                                     </li>
                                     <li class="dropdown-divider"></li>
