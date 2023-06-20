@@ -86,11 +86,19 @@
                                     <li class="nav-link"><a href="javascript:void(0)"
                                             class="nav-item dropdown-item">Change Password</a></li>
                                     <li class="dropdown-divider"></li>
-                                    <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Log
-                                            out</a></li>
+                                    <li><a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                            class="dropdown-item"> Logout
+                                        </a>
+                                    </li>
                                 </ul>
-                            </li>
-                            <li class="separator d-lg-none"></li>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                </form>
+                        </ul>
+                        </li>
+                        <li class="separator d-lg-none"></li>
                         </ul>
                     </div>
                 </div>
@@ -119,10 +127,12 @@
                         </div>
                         <div class="row">
                             <div class="col ms-2">
-                                <button class="btn bg-gradient-info mb-0" href="" type="button"
-                                    class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#addNewStaffModal"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New
-                                    Device</button>
+                                @can('deviceCreate')
+                                    <button class="btn bg-gradient-info mb-0" href="" type="button"
+                                        class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#addNewStaffModal"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New
+                                        Device</button>
+                                @endcan
                             </div>
                             <div class="col input-group me-6 ">
                                 <span class="input-group-text text-body"><i class="fas fa-search"
@@ -173,10 +183,20 @@
                                                         @if ($device->type == 0)
                                                             <span class="text-secondary text-xs font-weight-"> Pin
                                                             </span>
-                                                        @else
-                                                            <span
-                                                                class="text-secondary text-xs font-weight-"> Round
+                                                        @elseif ($device->type == 1)
+                                                            <span class="text-secondary text-xs font-weight-"> Round
                                                             </span>
+                                                        @elseif ($device->type == 2)
+                                                            <span class="text-secondary text-xs font-weight-"> Ceiling
+                                                            </span>
+                                                        @elseif ($device->type == 3)
+                                                            <span class="text-secondary text-xs font-weight-"> Sliding
+                                                            </span>
+                                                        @elseif ($device->type == 4)
+                                                            <span class="text-secondary text-xs font-weight-"> Folding
+                                                            </span>
+                                                        @else
+
                                                         @endif
                                                     </td>
                                                     <td class="align-middle text-center text-sm">
@@ -190,34 +210,16 @@
                                                     </td>
                                                     <td class="align-middle">
                                                         <div class="dropdown">
-                                                            <button class="btn btn-link" id="dropdownMenuButton1"
-                                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="fa fa-ellipsis-v text-xs"></i>
-                                                            </button>
-                                                            <ul class="dropdown-menu"
-                                                                aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item"
-                                                                        href="{{ route('device.show', $device->deviceId) }}">View</a>
-                                                                </li>
-                                                                <li><a class="dropdown-item viewStaff"
-                                                                        data-bs-toggle="offcanvas"
-                                                                        data-bs-target="#demo"
-                                                                        data-bs-staff_id="{{ $device->deviceId }}">
-                                                                        Balance
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <form
-                                                                        action="{{ route('device.destroy', $device->deviceId) }}"
-                                                                        method="POST">
-                                                                        @method('DELETE')
-                                                                        @csrf
-                                                                        <button class="dropdown-item link-danger"
-                                                                            id="deleteLink"
-                                                                            type="submit">Delete</button>
-                                                                    </form>
-                                                                </li>
-                                                            </ul>
+                                                            <div class="dropdown-toggle" data-toggle="dropdown">
+                                                                <i class="fas fa-ellipsis-v"></i>
+                                                            </div>
+                                                            @can('deviceDelete ')
+                                                                <div class="dropdown-menu"
+                                                                    aria-labelledby="dropdownMenuButton">
+                                                                    {{-- <a class="dropdown-item" href="#">View</a> --}}
+                                                                    <a class="dropdown-item" href="#">Delete</a>
+                                                                </div>
+                                                            @endcan
                                                         </div>
                                                     </td>
                                                 </tr>

@@ -26,6 +26,7 @@ class DeviceController extends Controller
      */
     public function create()
     {
+        $this-> authorize('deviceCreate');
         //
     }
 
@@ -82,6 +83,8 @@ class DeviceController extends Controller
      */
     public function destroy($id)
     {
+        $this-> authorize('deviceDelete');
+
         //
     }
 }

@@ -16,7 +16,6 @@
             <form action="/login" method="POST">
                 @csrf
                 <h1>Sign in</h1>
-
                 <input id="email" type="email" placeholder="email"
                     class="form-control form-control-lg @error('email') is-invalid @enderror" name="email"
                     value="{{ old('email') }}" required autocomplete="email" aria-label="email" autofocus>

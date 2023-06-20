@@ -32,6 +32,11 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('userCreate', fn(User $user) => $user -> isAdmin);
         Gate::define('userDelete', fn(User $user) => $user -> isAdmin);
+        Gate::define('deviceCreate', fn(User $user) => $user -> isAdmin);
+        Gate::define('deviceDelete', fn(User $user) => $user -> isAdmin);
+        Gate::define('userAction', fn(User $user) => $user -> isAdmin);
+        // Gate::define('deviceDelete', fn(User $user) => $user -> isAdmin);
+
 
         //
     }

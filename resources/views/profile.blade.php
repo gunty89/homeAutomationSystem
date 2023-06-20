@@ -118,7 +118,7 @@
                                 <h5 class="title">Edit Profile</h5>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('profile.update',$user->userId) }}" method="POST">
+                                <form action="{{ route('profile.update', $user->userId) }}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-5 pr-md-1">
@@ -126,7 +126,7 @@
                                                 <label>Role</label>
                                                 @if ($user->isAdmin == 1)
                                                     <input type="text" class="form-control" placeholder="Role"
-                                                        name="role" value=" Admin" disabled>
+                                                        name="role" value="Admin" disabled>
                                                 @else
                                                     <input type="text" class="form-control" placeholder="Role"
                                                         name="role" value="User">
@@ -147,7 +147,10 @@
                                             <div class="form-group">
                                                 <label>First Name</label>
                                                 <input type="text" class="form-control" name="firstname"
-                                                    placeholder="Company" value="{{ $user->firstName }}">
+                                                    placeholder="firstName" value="{{ $user->firstName }}">
+                                                @error('firstname')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6 pl-md-1">
@@ -155,6 +158,9 @@
                                                 <label>Last Name</label>
                                                 <input type="text" class="form-control" name="surname"
                                                     placeholder="Last Name" value="{{ $user->surname }}">
+                                                @error('surname')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -164,6 +170,9 @@
                                                 <label>City</label>
                                                 <input type="text" class="form-control" name="city"
                                                     placeholder="City" value="{{ $user->city }}">
+                                                @error('city')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -173,6 +182,9 @@
                                                 <label>District</label>
                                                 <input type="text" name="district" class="form-control"
                                                     placeholder="District" value="{{ $user->district }}">
+                                                @error('district')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-4 px-md-1">
@@ -180,6 +192,9 @@
                                                 <label>Street</label>
                                                 <input type="text" name="street" class="form-control"
                                                     placeholder="Street" value="{{ $user->street }}">
+                                                @error('street')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-4 pl-md-1">
@@ -187,11 +202,14 @@
                                                 <label>Phone</label>
                                                 <input type="text" class="form-control" name="phone"
                                                     placeholder="Phone" value="{{ $user->phoneNumber }}">
+                                                @error('phone')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
                                     {{-- <div class="row">
-                                        <div class="col-md-8">
+            </form>                                        <div class="col-md-8">
                                             <div class="form-group">
                                                 <label>About Me</label>
                                                 <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description"
@@ -199,12 +217,16 @@
                                             </div>
                                         </div>
                                     </div> --}}
+                                    @if (session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                    @endif
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-fill btn-secondary">Save</button>
                                     </div>
-                                </form>
+                    
                             </div>
-
                         </div>
                     </div>
                     <div class="col-md-4">

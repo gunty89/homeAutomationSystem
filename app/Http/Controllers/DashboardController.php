@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Device;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,7 +14,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $devices = Device::where('roomId', 1)->get();
+        // echo $devices;
+        return view('dashboard',compact('devices'));
     }
 
     /**

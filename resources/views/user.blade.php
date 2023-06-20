@@ -88,11 +88,19 @@
                                     <li class="nav-link"><a href="javascript:void(0)"
                                             class="nav-item dropdown-item">Change Password</a></li>
                                     <li class="dropdown-divider"></li>
-                                    <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Log
-                                            out</a></li>
+                                    <li><a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                            class="dropdown-item"> Logout
+                                        </a>
+                                    </li>
                                 </ul>
-                            </li>
-                            <li class="separator d-lg-none"></li>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                </form>
+                        </ul>
+                        </li>
+                        <li class="separator d-lg-none"></li>
                         </ul>
                     </div>
                 </div>
@@ -205,11 +213,14 @@
                                                         <div class="dropdown">
                                                             <div class="dropdown-toggle" data-toggle="dropdown">
                                                                 <i class="fas fa-ellipsis-v"></i>
-                                                              </div>
-                                                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                                <a class="dropdown-item" href="#">View</a>
-                                                                <a class="dropdown-item" href="#">Delete</a>
-                                                              </div>
+                                                            </div>
+                                                            @can('userDelete')
+                                                                <div class="dropdown-menu"
+                                                                    aria-labelledby="dropdownMenuButton">
+                                                                    {{-- <a class="dropdown-item" href="#">View</a> --}}
+                                                                    <a class="dropdown-item" href="#">Delete</a>
+                                                                </div>
+                                                            @endcan
                                                         </div>
                                                     </td>
                                                 </tr>
