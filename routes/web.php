@@ -43,6 +43,9 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
      //Profile Route
      Route::post('/profile/update/{id}', [LoginController::class, 'update'])->name('profile.update');
 
+     //edit profile password
+     Route::view('/profile/password', 'profile.password');
+
 });
 
 
