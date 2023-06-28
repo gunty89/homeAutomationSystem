@@ -264,17 +264,13 @@
                                                 <div class="form-group form-floating mb-3 mt-3">
                                                     <input class="form-control" type="text"
                                                         placeholder="Enter First Name" id="fname"
-                                                        name="agent_FName">
-                                                    <label for="example-text-input" class="form-control-label">First
-                                                        Name</label>
+                                                        name="firstname">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group form-floating mb-3 mt-3">
                                                     <input class="form-control" type="text" id="sname"
-                                                        placeholder="Enter Surname" name="agent_SName">
-                                                    <label for="example-text-input"
-                                                        class="form-control-label">Surname</label>
+                                                        placeholder="Enter Surname" name="surname">
                                                 </div>
                                             </div>
                                         </div>
@@ -285,17 +281,13 @@
                                                 <div class="form-group form-floating mb-3 mt-3">
                                                     <input class="form-control" type="text"
                                                         placeholder="Enter Mobile Number" id="mobilenumber"
-                                                        name="agent_MobileNumber">
-                                                    <label for="example-text-input" class="form-control-label">Mobile
-                                                        Number</label>
+                                                        name="mobileNumber">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group form-floating mb-3 mt-3">
                                                     <input class="form-control" type="email"
-                                                        placeholder=" Enter Email" id="email" name="agent_Email">
-                                                    <label for="example-text-input"
-                                                        class="form-control-label">Email</label>
+                                                        placeholder=" Enter Email" id="email" name="email">
                                                 </div>
                                             </div>
                                         </div>
@@ -305,27 +297,21 @@
                                             <div class="col-md-4 ">
                                                 <div class="form-group form-floating mb-3 mt-3">
                                                     <input class="form-control" type="text" id="city"
-                                                        placeholder="Enter City" name="agent_City">
-                                                    <label for="example-text-input"
-                                                        class="form-control-label">City</label>
+                                                        placeholder="Enter City" name="city">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group form-floating mb-3 mt-3">
                                                     <input class="form-control" type="text"
                                                         placeholder="Enter District" id="district"
-                                                        name="agent_District">
-                                                    <label for="example-text-input"
-                                                        class="form-control-label">District</label>
+                                                        name="district">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group form-floating mb-3 mt-3">
                                                     <input class="form-control" type="text"
                                                         placeholder="Enter Street" id="street"
-                                                        name="agent_Street">
-                                                    <label for="example-text-input"
-                                                        class="form-control-label">Street</label>
+                                                        name="street">
                                                 </div>
                                             </div>
                                         </div>

@@ -96,8 +96,8 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                     @csrf
                                 </form>
+                            </li>
                         </ul>
-                        </li>
                         <li class="separator d-lg-none"></li>
                         </ul>
                     </div>
@@ -196,7 +196,6 @@
                                                             <span class="text-secondary text-xs font-weight-"> Folding
                                                             </span>
                                                         @else
-
                                                         @endif
                                                     </td>
                                                     <td class="align-middle text-center text-sm">

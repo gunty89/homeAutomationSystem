@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Device;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class DeviceController extends Controller
@@ -14,9 +15,9 @@ class DeviceController extends Controller
      */
     public function index()
     {
-        $devices = Device::select('*')->get();
-        return view('device', compact('devices'));
-        // echo $devices;
+        $devices = Device::all();
+        $roomIds = Room::all();
+        return view('device', compact('devices, roomIds'));
     }
 
     /**
@@ -38,6 +39,7 @@ class DeviceController extends Controller
      */
     public function store(Request $request)
     {
+        
         //
     }
 

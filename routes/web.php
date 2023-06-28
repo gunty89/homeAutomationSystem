@@ -52,6 +52,10 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
 });
 
 
+Route::post('/arduino/update', [ArduinoController::class, 'handleUpdate']);
+
+
+
 
 
 
