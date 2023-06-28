@@ -119,9 +119,9 @@
                         </div>
                         <div class="row">
                             <div class="col ms-2">
-                                <button class="btn bg-gradient-info mb-0" href="" type="button"
+                                <button class="btn bg-gradient-info mb-0" type="button"
                                     class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#addNewStaffModal"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New
+                                    data-bs-target="#addNewDeviceModal"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New
                                     Device</button>
                             </div>
                             <div class="col input-group me-6 ">
@@ -238,6 +238,63 @@
         </div>
     </div>
     </div>
+    <div id="addNewDeviceModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content" style="background-color: cadetblue">
+            <div class="modal-header">
+              <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+              <form class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="roomID">Room ID:</label>
+                    <select class="form-control" id="roomID">
+                      <option>Option 1</option>
+                      <option>Option 2</option>
+                      <option>Option 3</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Name:</label>
+                    <select class="form-control" id="name">
+                      <option>Option 1</option>
+                      <option>Option 2</option>
+                      <option>Option 3</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="model">Model:</label>
+                    <select class="form-control" id="model">
+                      <option>Option 1</option>
+                      <option>Option 2</option>
+                      <option>Option 3</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="type">Type:</label>
+                    <select class="form-control" id="type">
+                      <option>Option 1</option>
+                      <option>Option 2</option>
+                      <option>Option 3</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+    
     <div class="fixed-plugin">
         <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
@@ -400,6 +457,8 @@
             });
     </script>
     <script src="{{ asset('assets/js/myJavascript.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

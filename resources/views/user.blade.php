@@ -233,15 +233,15 @@
     <form action="{{ route('user.store') }}" method="POST">
         @csrf
         <div class="modal fade" id="addNewStaffModal">
-            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <!-- Add New Staff Modal Header -->
-                    <div class="modal-header">
+                    <div class="modal-header" style="background-color: cadetblue">
                         <h4 class="modal-title">Staff Information</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <!-- Add New Staff Modal body -->
-                    <div class="modal-body">
+                    <div class="modal-body" style="background-color: whitesmoke">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
@@ -323,7 +323,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Add New Staff Modal footer -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>

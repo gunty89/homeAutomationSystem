@@ -79,3 +79,7 @@ function myFunction(inputId, tableId) {
       }
     }
   }
+
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })
