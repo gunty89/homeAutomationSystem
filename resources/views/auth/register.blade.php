@@ -56,10 +56,10 @@
                     </span>
                 @enderror
 
-                
 
 
-                {{-- <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label> --}}
+
+                    {{-- <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label> --}}
 
                 <input id="password" placeholder="Password" type="password"
                     class="form-control @error('password') is-invalid @enderror" name="password" required

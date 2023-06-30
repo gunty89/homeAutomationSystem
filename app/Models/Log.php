@@ -10,5 +10,9 @@ class Log extends Model
     use HasFactory;
 
     protected $primaryKey = 'logId';
+    
+    protected $fillable = [
+        'deviceId', 'action', 'date'
+    ];
 
 }

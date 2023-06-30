@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Device;
+use App\Models\Log;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,7 +15,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $devices = Device::where('roomId', 1)->get();
+        // echo $devices;
+        return view('dashboard', compact('devices'));
     }
 
     /**
@@ -50,7 +54,6 @@ class DashboardController extends Controller
         } elseif ($id == 2) {
             return view('store');
         }
-
     }
 
     /**
@@ -73,7 +76,49 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $device = Device::where('deviceId', $id)->first();
+
+        // Update the status
+        if ($device->status == 0) {
+            $device->status = 1;
+            if ($device->name == 'Fan') {
+                $action = 'Fan turned off';
+            }elseif($device->name == 'Bulb') {
+                $action = 'Bulb turned off';
+            }elseif($device->name == 'Door'){
+                $action = 'Door Closed';
+            }else{
+
+            }
+        } elseif ($device->status == 1) {
+            $device->status = 0;
+            if ($device->name == 'Fan') {
+                $action = 'Fan turned off';
+            }elseif($device->name == 'Bulb') {
+                $action = 'Bulb turned off';
+            }elseif($device->name == 'Door'){
+                $action = 'Door Closed';
+            }else{
+
+            }
+        } else {
+            // Handle the case when the device status is neither 0 nor 1
+            return back()->withError('Invalid device status');
+        }
+
+        // Save the changes
+        $device->save();
+
+        // Create a new log entry
+        Log::create([
+            'deviceId' => $device->deviceId,
+            'action' => $action,
+            'date' => now(),
+        ]);
+
+        // Redirect back to the previous page
+        return back();
+
     }
 
     /**
@@ -84,6 +129,9 @@ class DashboardController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $device = Device::where('deviceId', $id)->first();
+
+
     }
 }

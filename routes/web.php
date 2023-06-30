@@ -19,14 +19,17 @@ use App\Models\Device;
 |
 */
 
+
+Route::get('/signUp', [RegisterController::class, 'index'])->name('signUp');
+
+Route::get('/signIn', [LoginController::class, 'index'])->name('signIn');
+
+Route::get('/', function () {
+    return view('auth.login');
+});
+
+
 Route::group(['middleware' => ['auth', 'verified']], function(){
-    Route::get('/', function () {
-        return view('auth.login');
-    });
-
-    Route::get('/signIn', [LoginController::class, 'index'])->name('signIn');
-
-    Route::get('/signUp', [RegisterController::class, 'index'])->name('signUp');
 
     //Dashboard Route
     Route::resource('/dashboard', DashboardController::class)->middleware(['auth', 'verified']);
@@ -43,11 +46,13 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
      //Profile Route
      Route::post('/profile/update/{id}', [LoginController::class, 'update'])->name('profile.update');
 
+     //edit profile password
+     Route::view('/profile/password', 'profile.password');
+
 });
 
 
-
-
+Route::post('/arduino/update', [ArduinoController::class, 'handleUpdate']);
 
 
 
