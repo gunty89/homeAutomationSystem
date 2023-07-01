@@ -17,7 +17,7 @@ class DeviceController extends Controller
     {
         $devices = Device::all();
         $roomIds = Room::all();
-        return view('device', compact('devices, roomIds'));
+        return view('device', compact('devices', 'roomIds'));
     }
 
     /**

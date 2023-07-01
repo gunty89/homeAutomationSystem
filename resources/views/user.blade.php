@@ -18,6 +18,27 @@
     <link href="../assets/demo/demo.css" rel="stylesheet" />
     {{-- Boostrap Modal --}}
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
+
+     <style>
+        .modal-content {
+            background-color: #f8f9fa; /* Set background color for the modal content */
+        }
+
+        .modal-header,
+        .modal-footer {
+            background-color: inherit; /* Inherit background color from modal-content */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-submit-button {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+    </style>
 </head>
 
 <body class="">
@@ -131,9 +152,8 @@
                             <div class="col ms-2">
                                 @can('userCreate')
                                     <button class="btn bg-gradient-info mb-0" type="button" class="btn btn-primary"
-                                        data-bs-toggle="modal" data-bs-target="#addNewStaffModal"><i
-                                            class="fas fa-plus"></i>&nbsp;&nbsp;Add New
-                                        User</button>
+                                        data-bs-toggle="modal" data-bs-target="#myModal"><i
+                                            class="fas fa-plus"></i>&nbsp;&nbsp;Add New User</button>
                                 @endcan
                             </div>
                             <div class="col input-group me-6 ">
@@ -243,16 +263,97 @@
     <!--Add New Staff Modal Begin-->
     <form action="{{ route('user.store') }}" method="POST">
         @csrf
-        <div class="modal fade" id="addNewStaffModal">
+        <div class="container mt-5">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                Open Modal
+            </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content" style="background-color: cadetblue">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group form-floating mb-6 mt-3">
+                                            <input type="text" class="form-control" id="firstName"
+                                                placeholder="Enter first name">
+                                        </div>
+                                        <div class="form-group form-floating mb-6 mt-3">
+                                            <input type="text" class="form-control" id="surname"
+                                                placeholder="Enter surname">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group form-floating mb-6 mt-3">
+                                            <input type="text" class="form-control" id="mobileNumber"
+                                                placeholder="Enter mobile number">
+                                        </div>
+                                        <div class="form-group form-floating mb-6 mt-3">
+                                            <input type="email" class="form-control" id="email"
+                                                placeholder="Enter email">
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group form-floating mb-6 mt-3">
+                                            <input type="text" class="form-control" id="street"
+                                                placeholder="Enter Street">
+                                        </div>
+                                    </div>
+                    
+                                </div>  <div class="row">
+                                    <div class="col">
+                                        <div class="form-group form-floating mb-6 mt-3">
+                                            <input type="text" class="form-control" id="city" placeholder="Enter city">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group form-floating mb-6 mt-3">
+                                            <input type="text" class="form-control" id="district"
+                                                placeholder="Enter District">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                        <button type="submit" class="btn btn-secondary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    {{-- <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+        {{-- <div class="modal fade" id="addNewStaffModal">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <!-- Add New Staff Modal Header -->
-                    <div class="modal-header" style="background-color: cadetblue">
+                    <div class="modal-header" style="background-color:#222a42">
                         <h4 class="modal-title">Staff Information</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" class="btn btn-secondary" style="background-color:#222a42"></button>
                     </div>
                     <!-- Add New Staff Modal body -->
-                    <div class="modal-body" style="background-color: whitesmoke">
+                    <div class="modal-body" style="background-color:#222a42">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
@@ -321,15 +422,15 @@
                         </div>
                     </div>
                     <!-- Add New Staff Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal"
+                    <div class="modal-footer" style="background-color:#222a42">
+                        <button type="button" class="btn btn-secondaryr" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal"
                             id="addNewStaffBtn">Submit</button>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
+    </form> --}}
     <!--Add New Staff Modal End-->
     <div class="fixed-plugin">
         <div class="dropdown show-dropdown">

@@ -130,7 +130,7 @@
                                 @can('deviceCreate')
                                     <button class="btn bg-gradient-info mb-0" href="" type="button"
                                         class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#addNewStaffModal"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New
+                                        data-bs-target="#DeviceModal"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New
                                         Device</button>
                                 @endcan
                             </div>
@@ -238,63 +238,53 @@
 
         </div>
     </div>
-    </div>
-    <div id="addNewDeviceModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content" style="background-color: cadetblue">
-            <div class="modal-header">
-              <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Modal Header</h4>
-            </div>
-            <div class="modal-body">
-              <form class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="roomID">Room ID:</label>
-                    <select class="form-control" id="roomID">
-                      <option>Option 1</option>
-                      <option>Option 2</option>
-                      <option>Option 3</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="name">Name:</label>
-                    <select class="form-control" id="name">
-                      <option>Option 1</option>
-                      <option>Option 2</option>
-                      <option>Option 3</option>
-                    </select>
-                  </div>
+    </div><div class="modal fade" id="DeviceModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content" style="background-color: cadetblue">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="model">Model:</label>
-                    <select class="form-control" id="model">
-                      <option>Option 1</option>
-                      <option>Option 2</option>
-                      <option>Option 3</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="type">Type:</label>
-                    <select class="form-control" id="type">
-                      <option>Option 1</option>
-                      <option>Option 2</option>
-                      <option>Option 3</option>
-                    </select>
-                  </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body"><form>
+                            <div class="form-row">
+                                <div class="col">
+                                    <div class="form-group form-floating mb-6 mt-4">
+                                        <input type="text" class="form-control" id="deviceName" placeholder="Device Name">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group form-floating mb-6 mt-4">
+                                        <input type="text" class="form-control" id="deviceModel" placeholder="Device Model">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <div class="form-group form-floating mb-6 mt-4">
+                                        <input type="text" class="form-control" id="deviceStatus" placeholder="Device Status">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group form-floating mb-6 mt-4">
+                                        <input type="text" class="form-control" id="roomId" placeholder="Room ID">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-secondary">Submit</button>
+                        </form>
+                        
+                        </div>
+                    </div>
                 </div>
-              </form>
+                {{-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div> --}}
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
         </div>
-      </div>
-      
-  </div>
+    </div>
     
     <div class="fixed-plugin">
         <div class="dropdown show-dropdown">
