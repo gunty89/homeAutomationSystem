@@ -17,10 +17,11 @@ return new class extends Migration
             $table->id('deviceId');
             $table->unsignedBigInteger('roomId',false);
             $table->foreign('roomId')->references('roomId')->on('rooms')->onDelete('restrict')->onUpdate('cascade');
+            $table->unsignedBigInteger('smartDeviceId', false);
+            $table->foreign('smartDeviceId')->references('smartDeviceId')->on('smart_devices')->onDelete('restrict')->onUpdate('cascade');
             $table->string('name', 30);
             $table->string('model', 30);
-            $table->tinyInteger('type');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }

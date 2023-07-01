@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use illuminate\Database\Eloquent\SoftDeletes;
 
 class UserController extends Controller
 {
@@ -20,23 +22,6 @@ class UserController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $this-> authorize('userCreate');
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this-> authorize('userCreate');
@@ -64,8 +49,6 @@ class UserController extends Controller
 
         // Save the user to the database
         $user->save();
-
-        // Redirect or return a response
         return redirect()->back()->with('success', 'User created successfully');
 
         //
@@ -79,6 +62,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        echo 'rthjd';
+
         //
     }
 
@@ -90,6 +75,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+
         //
     }
 
@@ -114,6 +100,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         $this->authorize('userDelete');
-        //
+        $user = User::findOrFail($id);
+        // $user->status = 2;
+        // $user->save();
+
+        echo $user;
     }
 }

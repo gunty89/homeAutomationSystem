@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Device;
 use App\Models\Room;
 use Illuminate\Http\Request;
+use illuminate\Database\Eloquent\SoftDeletes;
 
 class DeviceController extends Controller
 {
@@ -17,7 +18,7 @@ class DeviceController extends Controller
     {
         $devices = Device::all();
         $roomIds = Room::all();
-        return view('device', compact('devices, roomIds'));
+        return view('device', compact('devices', 'roomIds'));
     }
 
     /**
@@ -27,7 +28,7 @@ class DeviceController extends Controller
      */
     public function create()
     {
-        $this-> authorize('deviceCreate');
+
         //
     }
 
@@ -39,7 +40,26 @@ class DeviceController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $this-> authorize('deviceCreate');
+
+        $validatedData = $request->validate([
+            'room' => 'required',
+            'name' => 'required|max:255',
+            'model' => 'required|max:255',
+            'state' => 'required|max:255',
+        ]);
+
+        // Create a new device instance
+        $device = new Device();
+        $device->smartDeviceId = 76842;
+        $device->name = $request->input('name');
+        $device->model = $request->input('model');
+        $device->state = $request->input('state');
+
+
+        // Save the device to the database
+        $device->save();
+        return redirect()->back()->with('success', 'device created successfully');
         //
     }
 
@@ -86,6 +106,10 @@ class DeviceController extends Controller
     public function destroy($id)
     {
         $this-> authorize('deviceDelete');
+        $device = Device::where('deviceId', $id)->first();
+        $device->status = 2;
+        $device->save();
+
 
         //
     }

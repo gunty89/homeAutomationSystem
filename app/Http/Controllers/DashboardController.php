@@ -17,7 +17,7 @@ class DashboardController extends Controller
     {
         $devices = Device::where('roomId', 1)->get();
         // echo $devices;
-        return view('dashboard', compact('devices'));
+        return view('room.dashboard', compact('devices'));
     }
 
     /**
@@ -50,9 +50,9 @@ class DashboardController extends Controller
     public function show($id)
     {
         if ($id == 1) {
-            return view('master');
+            return view('room.master');
         } elseif ($id == 2) {
-            return view('store');
+            return view('room.store');
         }
     }
 
@@ -130,7 +130,9 @@ class DashboardController extends Controller
     public function destroy($id)
     {
 
-        $device = Device::where('deviceId', $id)->first();
+
+
+
 
 
     }

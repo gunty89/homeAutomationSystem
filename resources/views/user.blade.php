@@ -215,11 +215,12 @@
                                                                 <i class="fas fa-ellipsis-v"></i>
                                                             </div>
                                                             @can('userDelete')
+                                                            <form action="{{ route('user.destroy',$user->userId) }}" method="POST">
                                                                 <div class="dropdown-menu"
                                                                     aria-labelledby="dropdownMenuButton">
-                                                                    {{-- <a class="dropdown-item" href="#">View</a> --}}
-                                                                    <a class="dropdown-item" href="#">Delete</a>
+                                                                    <a class="dropdown-item" href=""><button type="submit">Delete</button></a>
                                                                 </div>
+                                                            </form>
                                                             @endcan
                                                         </div>
                                                     </td>

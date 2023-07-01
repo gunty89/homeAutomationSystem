@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class SmartDevice extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'smartDeviceId';
 }
