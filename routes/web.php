@@ -32,7 +32,7 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth', 'verified']], function(){
 
     //Dashboard Route
-    Route::resource('/dashboard', DashboardController::class)->middleware(['auth', 'verified']);
+    Route::resource('/dashboard', DashboardController::class);
 
     //User Route
     Route::resource('/user', UserController::class);

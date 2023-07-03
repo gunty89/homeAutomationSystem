@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <title> Smart Home Automation System </title>
+    <title> Home Automation System    </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -34,7 +34,7 @@
                                 <span class="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                        <a class="navbar-brand" href="javascript:void(0)">Store Room</a>
+                        <a class="navbar-brand" href="javascript:void(0)">Master Room</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -60,9 +60,9 @@
                                 <ul class="dropdown-menu dropdown-navbar">
                                     <li class="nav-link"><a href="{{ route('dashboard.index') }}" class="nav-item dropdown-item">Sitting Room</a>
                                     </li>
-                                    <li class="nav-link"><a href="{{ route('dashboard.show', 1) }}" class="nav-item dropdown-item">Master Room</a>
+                                    <li class="nav-link"><a href="{{ route('dashboard.show',  2) }}" class="nav-item dropdown-item">Master Room</a>
                                     </li>
-                                    <li class="nav-link"><a href="{{ route('dashboard.show', 2) }}" class="nav-item dropdown-item">Store Room</a>
+                                    <li class="nav-link"><a href="{{ route('dashboard.show', 3) }}" class="nav-item dropdown-item">Store Room</a>
                                     </li>
                                 </ul>
                             </li>
@@ -103,7 +103,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-link">
-                                        <a href="javascript:void(0)" class="nav-item dropdown-item">Change Password
+                                        <a href="{{ url('/profile/password')}}" class="nav-item dropdown-item">Change Password
                                         </a>
                                     </li>
                                     <li class="dropdown-divider"></li>
@@ -148,7 +148,7 @@
                             <div class="card-body2">
                                 <style>
                                     .card-body2 {
-                                        background-image: url('/assets/img/Store-room.jpg');
+                                        background-image: url('/assets/img/wallpaper4.jpg');
                                         background-size: 100%;
                                         background-position: center;
                                         width: 100%;
@@ -167,76 +167,99 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3>Door</h3>
-
-                            </div>
-                            <div class="card-body">
-                                <div class="container text-center">
-                                    <div class="h3 text-success text-muted">
-                                        STATUS : OPEN </div>
-                                    <div class="container"><button class="btn btn-secondary btn-md">
-                                            <i class="fa fa-fan"></i> Close
-                                        </button>
+                    @if ($devices)
+                        @foreach ($devices as $device)
+                            <div class="col-lg-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3>{{ $device->name }}</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="container text-center">
+                                            @if ($device->status == 0)
+                                                @if ($device->name == 'Door')
+                                                    <div class="h3 text-success text-muted">
+                                                        STATUS : OPENED </div>
+                                                    <form action="{{ route('dashboard.update', $device->deviceId) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="container">
+                                                            <button type="submit" class="btn btn-secondary btn-md">
+                                                                <i class="fa fa-fan"></i> Close
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                    <div class="card-footer">
+                                                        <br>
+                                                    </div>
+                                                    <div class="chart-area">
+                                                        <!---- <canvas id="CountryChart"></canvas>-->
+                                                    </div>
+                                                @elseif ($device->name == 'Bulb' || $device->name == 'Fan')
+                                                    <div class="h3 text-success text-muted">
+                                                        STATUS : ON </div>
+                                                    <form action="{{ route('dashboard.update', $device->deviceId) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="container"><button type="submit"
+                                                                class="btn btn-secondarybtn-md">
+                                                                <i class="fa fa-fan"></i> Turn Off
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                    <div class="card-footer">
+                                                        <br>
+                                                    </div>
+                                                    <div class="chart-area">
+                                                        <!---- <canvas id="CountryChart"></canvas>-->
+                                                    </div>
+                                                @endif
+                                            @else
+                                                @if ($device->name == 'Door')
+                                                    <div class="h3 text-success text-muted">
+                                                        STATUS : CLOSED </div>
+                                                    <form action="{{ route('dashboard.update', $device->deviceId) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="container"><button type="submit"
+                                                                class="btn btn-secondary btn-md">
+                                                                <i class="fa fa-fan"></i> Open
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                    <div class="card-footer">
+                                                        <br>
+                                                    </div>
+                                                @elseif ($device->name == 'Bulb' || $device->name == 'Fan')
+                                                    <div class="h3 text-success text-muted">
+                                                        STATUS : OFF </div>
+                                                    <form action="{{ route('dashboard.update', $device->deviceId) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="container"><button
+                                                                class="btn btn-secondarybtn-md">
+                                                                <i class="fa fa-fan"></i> Turn On
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                    <div class="card-footer">
+                                                        <br>
+                                                    </div>
+                                                    <div class="chart-area">
+                                                        <!---- <canvas id="CountryChart"></canvas>-->
+                                                    </div>
+                                                @endif
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="card-footer">
-                                    <br>
-                                </div>
-                                <div class="chart-area">
-                                    <!--- <canvas id="chartLinePurple"></canvas>-->
-                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card ">
-                            <div class="card-header">
-                                <h3>Light</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="container text-center">
-                                    <div class="h3 text-success text-muted">
-                                        STATUS : ON </div>
-                                    <div class="container"><button class="btn btn-secondarybtn-md">
-                                            <i class="fa fa-fan"></i> Off
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <br>
-                                </div>
-                                <div class="chart-area">
-                                    <!---- <canvas id="CountryChart"></canvas>-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card ">
-                            <div class="card-header">
-                                <h3>Fan</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="container text-center">
-                                    <div class="h3 text-success text-muted">
-                                        STATUS : ON </div>
-                                    <div class="container"><button class="btn btn-secondary btn-md">
-                                            <i class="fa fa-fan"></i> Off
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <br>
-                                </div>
-                                <div class="chart-area">
-                                    <!--- <canvas id="chartLineGreen"></canvas>-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        @endforeach
+                    @endif
                 </div>
 
             </div>

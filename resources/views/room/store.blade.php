@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <title>
-        SMART HOME
-    </title>
+    <title> Smart Home Automation System </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -19,36 +17,6 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('assets/demo/demo.css') }}" rel="stylesheet" />
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <title>
-        Black Dashboard
-    </title>
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <!-- Nucleo Icons -->
-    <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
-    <!-- CSS Files -->
-    <link href="{{ asset('assets/css/black-dashboard.css?v=1.0.0') }}" rel="stylesheet" />
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="{{ asset('assets/demo/demo.css') }}" rel="stylesheet" />
-    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
-    <script>
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
-
-        var pusher = new Pusher('ce77aa1765616f22248a', {
-            cluster: 'sa1'
-        });
-
-        var channel = pusher.subscribe('deviceNotification');
-        channel.bind('deviceStatus', function(data) {
-            alert(JSON.stringify(data));
-        });
-    </script>
 </head>
 
 <body>
@@ -66,7 +34,7 @@
                                 <span class="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                        <a class="navbar-brand" href="javascript:void(0)">Dashboard/ Sitting Room</a>
+                        <a class="navbar-brand" href="javascript:void(0)">Store Room</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -90,14 +58,11 @@
                                     <b>ROOMS</b>
                                 </a>
                                 <ul class="dropdown-menu dropdown-navbar">
-                                    <li class="nav-link"><a href="{{ route('dashboard.index') }}"
-                                            class="nav-item dropdown-item">Sitting Room</a>
+                                    <li class="nav-link"><a href="{{ route('dashboard.index') }}" class="nav-item dropdown-item">Sitting Room</a>
                                     </li>
-                                    <li class="nav-link"><a href="{{ route('dashboard.show', 1) }}"
-                                            class="nav-item dropdown-item">Master Room</a>
+                                    <li class="nav-link"><a href="{{ route('dashboard.show', 2) }}" class="nav-item dropdown-item">Master Room</a>
                                     </li>
-                                    <li class="nav-link"><a href="{{ route('dashboard.show', 2) }}"
-                                            class="nav-item dropdown-item">Store Room</a>
+                                    <li class="nav-link"><a href="{{ route('dashboard.show', 3) }}" class="nav-item dropdown-item">Store Room</a>
                                     </li>
                                 </ul>
                             </li>
@@ -134,12 +99,11 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-navbar">
                                     <li class="nav-link">
-                                        <a href=" {{ url('/profile') }}" class="nav-item dropdown-item">Profile
+                                        <a href=" {{ url('/user') }}" class="nav-item dropdown-item">Profile
                                         </a>
                                     </li>
                                     <li class="nav-link">
-                                        <a href="{{ url('/profile/password') }}"
-                                            class="nav-item dropdown-item">Change Password
+                                        <a href="javascript:void(0)" class="nav-item dropdown-item">Change Password
                                         </a>
                                     </li>
                                     <li class="dropdown-divider"></li>
@@ -184,11 +148,11 @@
                             <div class="card-body2">
                                 <style>
                                     .card-body2 {
-                                        background-image: url('/assets/img/Sitting.jpg');
+                                        background-image: url('/assets/img/Store-room.jpg');
                                         background-size: 100%;
                                         background-position: center;
                                         width: 100%;
-                                        height: 350px;
+                                        height: 420px;
                                         border-radius: 10px;
                                         display: flex;
                                         justify-content: center;
@@ -296,14 +260,15 @@
                             </div>
                         @endforeach
                     @endif
-
                 </div>
+
             </div>
         </div>
+        <footer class="footer">
+            <br>
+        </footer>
     </div>
-    <footer class="footer">
-        <br>
-    </footer>
+    </div>
     <div class="fixed-plugin">
         <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
@@ -346,73 +311,132 @@
     <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('assets/js/black-dashboard.min.js?v=1.0.0') }}"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{ asset('assets/demo/demo.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $().ready(function() {
+                $sidebar = $('.sidebar');
+                $navbar = $('.navbar');
+                $main_panel = $('.main-panel');
+
+                $full_page = $('.full-page');
+
+                $sidebar_responsive = $('body > .navbar-collapse');
+                sidebar_mini_active = true;
+                white_color = false;
+
+                window_width = $(window).width();
+
+                fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+
+
+                $('.fixed-plugin a').click(function(event) {
+                    if ($(this).hasClass('switch-trigger')) {
+                        if (event.stopPropagation) {
+                            event.stopPropagation();
+                        } else if (window.event) {
+                            window.event.cancelBubble = true;
+                        }
+                    }
+                });
+
+                $('.fixed-plugin .background-color span').click(function() {
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+
+                    var new_color = $(this).data('color');
+
+                    if ($sidebar.length != 0) {
+                        $sidebar.attr('data', new_color);
+                    }
+
+                    if ($main_panel.length != 0) {
+                        $main_panel.attr('data', new_color);
+                    }
+
+                    if ($full_page.length != 0) {
+                        $full_page.attr('filter-color', new_color);
+                    }
+
+                    if ($sidebar_responsive.length != 0) {
+                        $sidebar_responsive.attr('data', new_color);
+                    }
+                });
+
+                $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function() {
+                    var $btn = $(this);
+
+                    if (sidebar_mini_active == true) {
+                        $('body').removeClass('sidebar-mini');
+                        sidebar_mini_active = false;
+                        blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
+                    } else {
+                        $('body').addClass('sidebar-mini');
+                        sidebar_mini_active = true;
+                        blackDashboard.showSidebarMessage('Sidebar mini activated...');
+                    }
+
+                    // we simulate the window Resize so the charts will get updated in realtime.
+                    var simulateWindowResize = setInterval(function() {
+                        window.dispatchEvent(new Event('resize'));
+                    }, 180);
+
+                    // we stop the simulation of Window Resize after the animations are completed
+                    setTimeout(function() {
+                        clearInterval(simulateWindowResize);
+                    }, 1000);
+                });
+
+                $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
+                    var $btn = $(this);
+
+                    if (white_color == true) {
+
+                        $('body').addClass('change-background');
+                        setTimeout(function() {
+                            $('body').removeClass('change-background');
+                            $('body').removeClass('white-content');
+                        }, 900);
+                        white_color = false;
+                    } else {
+
+                        $('body').addClass('change-background');
+                        setTimeout(function() {
+                            $('body').removeClass('change-background');
+                            $('body').addClass('white-content');
+                        }, 900);
+
+                        white_color = true;
+                    }
+
+
+                });
+
+                $('.light-badge').click(function() {
+                    $('body').addClass('white-content');
+                });
+
+                $('.dark-badge').click(function() {
+                    $('body').removeClass('white-content');
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Javascript method's body can be found in assets/js/demos.js
+            demo.initDashboardPageCharts();
+
+        });
+    </script>
     <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-    <script src="{{ asset('assets/js/myJavascript.js') }}"></script>
+    <script>
+        window.TrackJS &&
+            TrackJS.install({
+                token: "ee6fab19c5a04ac1a32a645abde4613a",
+                application: "black-dashboard-free"
+            });
+    </script>
 </body>
 
 </html>
-
-
-
-
-{{-- @if ($devices)
-    @foreach ($devices as $device)
-        <div class="col-lg-4">
-            <div class="card">
-                <div class="card-header">
-                    <h3>{{ $device->name }}</h3>
-                </div>
-                <div class="card-body">
-                    <div class="container text-center">
-                        <div id="device-status-{{ $device->deviceId }}">
-                            @if ($device->status == 0 && $device->name == 'Door')
-                                <div class="h3 text-success text-muted">
-                                    STATUS: OPENED
-                                </div>
-                            @elseif ($device->status == 1 && $device->name == 'Door')
-                                <div class="h3 text-success text-muted">
-                                    STATUS: CLOSED
-                                </div>
-                            @elseif ($device->status == 0 && ($device->name == 'Bulb' || $device->name == 'Fan'))
-                                <div class="h3 text-success text-muted">
-                                    STATUS: OFF
-                                </div>
-                            @elseif ($device->status == 1 && ($device->name == 'Bulb' || $device->name == 'Fan'))
-                                <div class="h3 text-success text-muted">
-                                    STATUS: ON
-                                </div>
-                            @endif
-                        </div>
-                        <form class="device-form" data-device-id="{{ $device->deviceId }}"
-                            action="{{ route('dashboard.update', $device->deviceId) }}" method="POST">
-                            @method('PUT')
-                            <div class="container">
-                                <button type="submit" class="btn btn-secondary btn-md">
-                                    @if ($device->status == 0)
-                                        @if ($device->name == 'Door')
-                                            <i class="fa fa-fan"></i> Close
-                                        @else
-                                            <i class="fa fa-fan"></i> Turn On
-                                        @endif
-                                    @elseif ($device->status == 1)
-                                        @if ($device->name == 'Door')
-                                            <i class="fa fa-fan"></i> Open
-                                        @else
-                                            <i class="fa fa-fan"></i> Turn Off
-                                        @endif
-                                    @endif
-                                </button>
-                            </div>
-                        </form>
-                        <div class="card-footer">
-                            <br>
-                        </div>
-                        <div class="chart-area">
-                            <!-- <canvas id="CountryChart"></canvas> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endforeach
-@endif --}}

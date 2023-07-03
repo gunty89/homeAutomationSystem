@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Device;
 use App\Models\Room;
 use Illuminate\Http\Request;
+use illuminate\Database\Eloquent\SoftDeletes;
 
 class DeviceController extends Controller
 {
@@ -16,8 +17,8 @@ class DeviceController extends Controller
     public function index()
     {
         $devices = Device::all();
-        $roomIds = Room::all();
-        return view('device', compact('devices', 'roomIds'));
+        $rooms = Room::all();
+        return view('device', compact('devices', 'rooms'));
     }
 
     /**
@@ -27,7 +28,7 @@ class DeviceController extends Controller
      */
     public function create()
     {
-        $this-> authorize('deviceCreate');
+
         //
     }
 
@@ -39,7 +40,33 @@ class DeviceController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // dd($request->input('state'));
+        $this->authorize('deviceCreate');
+        $validatedData = $request->validate([
+            'roomId' => 'required',
+            'deviceName' => 'required',
+        ]);
+
+            // Create a new device instance
+            $device = new Device();
+            $device->smartDeviceId = 76842;
+            $device->roomId = $request->input('roomId');
+            $device->name = $request->input('deviceName');
+            if ($request->input('deviceName') == 'Bulb') {
+                $device->model = 'Round';
+            } elseif ($request->input('deviceName') == 'Door') {
+                $device->model = 'Sliding';
+            } elseif ($request->input('deviceName') == 'Fan') {
+                $device->model = 'Ceiling';
+            }else{
+
+            }
+            $device->state = 0;
+
+            // Save the device to the database
+            $device->save();
+            return redirect()->back()->with('success', 'Device created successfully');
+
         //
     }
 
@@ -86,6 +113,10 @@ class DeviceController extends Controller
     public function destroy($id)
     {
         $this-> authorize('deviceDelete');
+        $device = Device::where('deviceId', $id)->first();
+        $device->status = 2;
+        $device->save();
+
 
         //
     }

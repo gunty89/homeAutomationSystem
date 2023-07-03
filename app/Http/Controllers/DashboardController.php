@@ -17,7 +17,7 @@ class DashboardController extends Controller
     {
         $devices = Device::where('roomId', 1)->get();
         // echo $devices;
-        return view('dashboard', compact('devices'));
+        return view('room.dashboard', compact('devices'));
     }
 
     /**
@@ -49,10 +49,12 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
-        if ($id == 1) {
-            return view('master');
-        } elseif ($id == 2) {
-            return view('store');
+        if ($id == 2) {
+            $devices = Device::where('roomId', 2)->get();
+            return view('room.master', compact('devices'));
+        } elseif ($id == 3) {
+            $devices = Device::where('roomId', 3)->get();
+            return view('room.store',  compact('devices'));
         }
     }
 
@@ -111,6 +113,7 @@ class DashboardController extends Controller
 
         // Create a new log entry
         Log::create([
+            'userId' => auth()->user()->userId,
             'deviceId' => $device->deviceId,
             'action' => $action,
             'date' => now(),
@@ -130,7 +133,9 @@ class DashboardController extends Controller
     public function destroy($id)
     {
 
-        $device = Device::where('deviceId', $id)->first();
+
+
+
 
 
     }

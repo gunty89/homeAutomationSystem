@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('sensory_data', function (Blueprint $table) {
             $table->id('sensoryDataId');
-            $table->unsignedBigInteger('roomId', false);
-            $table->foreign('roomId')->references('roomId')->on('rooms')->onDelete('restrict')->onUpdate('cascade');
+            $table->unsignedBigInteger('smartDeviceId', false);
+            $table->foreign('smartDeviceId')->references('smartDeviceId')->on('smart_devices')->onDelete('restrict')->onUpdate('cascade');
             $table->float('temperature');
             $table->float('lightLevel');
             $table->float('humidity');

@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('smart_devices', function (Blueprint $table) {
-            $table->id();
+            $table->id('smartDeviceId');
+            $table->string('name', 45);
             $table->timestamps();
         });
     }

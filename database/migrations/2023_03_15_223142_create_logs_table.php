@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->id('logId');
+            $table->unsignedBigInteger('userId', false);
+            $table->foreign('userId')->references('userId')->on('users')->onDelete('restrict')->onUpdate('cascade');
             $table->unsignedBigInteger('deviceId', false);
             $table->foreign('deviceId')->references('deviceId')->on('devices')->onDelete('restrict')->onUpdate('cascade');
             $table->string('action', 50);
