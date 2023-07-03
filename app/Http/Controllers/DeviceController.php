@@ -17,8 +17,8 @@ class DeviceController extends Controller
     public function index()
     {
         $devices = Device::all();
-        $roomIds = Room::all();
-        return view('device', compact('devices', 'roomIds'));
+        $rooms = Room::all();
+        return view('device', compact('devices', 'rooms'));
     }
 
     /**
@@ -40,26 +40,33 @@ class DeviceController extends Controller
      */
     public function store(Request $request)
     {
-        $this-> authorize('deviceCreate');
-
+        // dd($request->input('state'));
+        $this->authorize('deviceCreate');
         $validatedData = $request->validate([
-            'room' => 'required',
-            'name' => 'required|max:255',
-            'model' => 'required|max:255',
-            'state' => 'required|max:255',
+            'roomId' => 'required',
+            'deviceName' => 'required',
         ]);
 
-        // Create a new device instance
-        $device = new Device();
-        $device->smartDeviceId = 76842;
-        $device->name = $request->input('name');
-        $device->model = $request->input('model');
-        $device->state = $request->input('state');
+            // Create a new device instance
+            $device = new Device();
+            $device->smartDeviceId = 76842;
+            $device->roomId = $request->input('roomId');
+            $device->name = $request->input('deviceName');
+            if ($request->input('deviceName') == 'Bulb') {
+                $device->model = 'Round';
+            } elseif ($request->input('deviceName') == 'Door') {
+                $device->model = 'Sliding';
+            } elseif ($request->input('deviceName') == 'Fan') {
+                $device->model = 'Ceiling';
+            }else{
 
+            }
+            $device->state = 0;
 
-        // Save the device to the database
-        $device->save();
-        return redirect()->back()->with('success', 'device created successfully');
+            // Save the device to the database
+            $device->save();
+            return redirect()->back()->with('success', 'Device created successfully');
+
         //
     }
 

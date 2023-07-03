@@ -93,10 +93,10 @@
                                     <li class="nav-link"><a href="{{ route('dashboard.index') }}"
                                             class="nav-item dropdown-item">Sitting Room</a>
                                     </li>
-                                    <li class="nav-link"><a href="{{ route('dashboard.show', 1) }}"
+                                    <li class="nav-link"><a href="{{ route('dashboard.show', 2) }}"
                                             class="nav-item dropdown-item">Master Room</a>
                                     </li>
-                                    <li class="nav-link"><a href="{{ route('dashboard.show', 2) }}"
+                                    <li class="nav-link"><a href="{{ route('dashboard.show', 3) }}"
                                             class="nav-item dropdown-item">Store Room</a>
                                     </li>
                                 </ul>

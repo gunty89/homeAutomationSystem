@@ -80,6 +80,21 @@ function sortTable(n, tableId) {
     }
 }
 
+
+// Attach event listener to the delete link
+document.querySelectorAll('.delete-link').forEach(function(link) {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        // Get the associated form ID
+        var formId = this.getAttribute('data-form-id');
+
+        // Submit the form
+        document.getElementById(formId).submit();
+    });
+});
+
+
 $(document).ready(function () {
     $().ready(function () {
         $sidebar = $('.sidebar');
@@ -196,44 +211,51 @@ $(document).ready(function () {
 
 });
 
-window.TrackJS &&
+    window.TrackJS &&
     TrackJS.install({
         token: "ee6fab19c5a04ac1a32a645abde4613a",
         application: "black-dashboard-free"
     });
 
 
-    // Change status of device
-    $(document).ready(function() {
-        // Handle device status update
-        $('.device-form').submit(function(e) {
-            e.preventDefault();
+// Change status of device
+$(document).ready(function() {
+    // Handle device status update
+    $('.device-form').submit(function(e) {
+        e.preventDefault();
 
-            var form = $(this);
-            var deviceId = form.data('device-id');
-            var url = form.attr('action');
+        var form = $(this);
+        var deviceId = form.data('device-id');
+        var url = form.attr('action');
 
-            // Send an AJAX request to update the device status
-            $.ajax({
-                url: url,
-                type: 'PUT',
-                data: form.serialize(),
+        // Send an AJAX request to update the device status
+        $.ajax({
+            url: url,
+            type: 'PUT',
+            data: form.serialize(),
 
-                success: function(response) {
-                    // Update the device status element with the new status
-                    $('#device-status-' + deviceId).html(response.html);
-                },
-                error: function(xhr, status, error) {
-                    var errorMessage = xhr.responseText; // Get the error message from the response
+            success: function(response) {
+                // Update the device status element with the new status
+                $('#device-status-' + deviceId).html(response.html);
+            },
+            error: function(xhr, status, error) {
+                var errorMessage = xhr.responseText; // Get the error message from the response
 
-                    // Output the error message
-                    console.log(errorMessage);
-                    // Or display it in an alert box
-                    alert(errorMessage);
-                    // Or update a specific element with the error message
-                    $('#error-message').text(errorMessage);
-                }
-            });
+                // Output the error message
+                console.log(errorMessage);
+                // Or display it in an alert box
+                alert(errorMessage);
+                // Or update a specific element with the error message
+                $('#error-message').text(errorMessage);
+            }
         });
     });
+});
 
+
+$(document).ready(function() {
+    if (session('success')){
+        $('#successModal').modal('show'); // Show the modal
+        $('#successMessage').fadeIn(1000).delay(3000).fadeOut(1000); // Animate the success message
+    }
+});

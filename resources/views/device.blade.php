@@ -16,6 +16,7 @@
     <link href="../assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/demo/demo.css" rel="stylesheet" />
+    <link href="../assets/css/style.css" rel="styleshhet" />
 </head>
 
 <body class="">
@@ -129,8 +130,8 @@
                             <div class="col ms-2">
                                 @can('deviceCreate')
                                     <button class="btn bg-gradient-info mb-0" href="" type="button"
-                                        class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#DeviceModal"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add New
+                                        class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#DeviceModal"><i
+                                            class="fas fa-plus"></i>&nbsp;&nbsp;Add New
                                         Device</button>
                                 @endcan
                             </div>
@@ -147,16 +148,11 @@
                                     id="staffTable">
                                     <thead>
                                         <tr>
-                                            {{-- <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder opacity-20" onclick="sortTable(0, 'staffTable')">StaffId</th> --}}
                                             <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-20  ps-2"
                                                 onclick="sortTable(0, 'staffTable')">Device Name</th>
                                             <th
                                                 class="text-center text-uppercase text-xxs font-weight-bolder opacity-20">
-                                                Model</th>
-                                            <th
-                                                class="text-center text-uppercase text-xxs font-weight-bolder opacity-20 ps-2">
-                                                Type</th>
-                                            <th
+                                                Model</th><th
                                                 class="text-center text-uppercase text-xxs font-weight-bolder opacity-20">
                                                 Status</th>
                                             <th class="opacity-7">Action</th>
@@ -179,25 +175,6 @@
                                                         <p class="text-xs text-center text-secondary mb-0">
                                                         </p>
                                                     </td>
-                                                    <td class="align-middle text-center">
-                                                        @if ($device->type == 0)
-                                                            <span class="text-secondary text-xs font-weight-"> Pin
-                                                            </span>
-                                                        @elseif ($device->type == 1)
-                                                            <span class="text-secondary text-xs font-weight-"> Round
-                                                            </span>
-                                                        @elseif ($device->type == 2)
-                                                            <span class="text-secondary text-xs font-weight-"> Ceiling
-                                                            </span>
-                                                        @elseif ($device->type == 3)
-                                                            <span class="text-secondary text-xs font-weight-"> Sliding
-                                                            </span>
-                                                        @elseif ($device->type == 4)
-                                                            <span class="text-secondary text-xs font-weight-"> Folding
-                                                            </span>
-                                                        @else
-                                                        @endif
-                                                    </td>
                                                     <td class="align-middle text-center text-sm">
                                                         @if ($device->status == 0)
                                                             <span
@@ -215,15 +192,13 @@
                                                             @can('deviceDelete ')
                                                                 <div class="dropdown-menu"
                                                                     aria-labelledby="dropdownMenuButton">
-                                                                    {{-- <a class="dropdown-item" href="#">View</a> --}}
-                                                                    <a class="dropdown-item" href="#">Delete</a>
+                                                                    <a class="dropdown-item delete-link" href="#">Delete</a>
                                                                 </div>
                                                             @endcan
                                                         </div>
                                                     </td>
                                                 </tr>
                                             @endforeach
-
                                         @endif
                                     </tbody>
                                 </table><br>
@@ -238,45 +213,65 @@
 
         </div>
     </div>
-    </div><div class="modal fade" id="DeviceModal" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <!-- Modal content-->
-            <div class="modal-content" style="background-color: cadetblue">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="card">
-                        <div class="card-body"><form>
-                            <div class="form-row">
-                                <div class="col">
-                                    <div class="form-group form-floating mb-6 mt-4">
-                                        <input type="text" class="form-control" id="deviceName" placeholder="Device Name">
+    </div>
+    <form action="{{ route('device.store') }}" method="post">
+        @csrf
+        <div class="modal fade" id="DeviceModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content" style="background-color: cadetblue">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <div class="form-group form-floating mb-6 mt-4">
+                                            <label for="floatingSelect">Device Name</label>
+                                            <select class="form-control" name="deviceName" id="deviceName">
+                                                <option value="Bulb">Bulb</option>
+                                                <option value="Door">Door</option>
+                                                <option value="Fan">Fan</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group form-floating mb-6 mt-4">
+                                            <label for="room">Room Name</label>
+                                            <select class="form-control" name="roomId" id="room">
+                                                @if ($rooms)
+                                                    @foreach ($rooms as $room)
+                                                        <option value="{{ $room->roomId }}"> {{ $room->name }}
+                                                        </option>
+                                                    @endforeach
+                                                @endif
+                                                <!-- Add more options here if needed -->
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-group form-floating mb-6 mt-4">
-                                        <input type="text" class="form-control" id="deviceModel" placeholder="Device Model">
+                                <div class="form-row">
+                                    <div class="col-9">
+                                        <div class="form-group form-floating mb-6 mt-4">
+                                            <label for="floatingSelect">Device State</label>
+                                            <input type="text" class="form-control" id="deviceStatus"
+                                                name="state" value="Working" placeholder="Device Status" disabled>
+                                        </div>
                                     </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button type="submit" class="btn btn-secondary">Submit</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="col">
-                                    <div class="form-group form-floating mb-6 mt-4">
-                                        <input type="text" class="form-control" id="deviceStatus" placeholder="Device Status">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group form-floating mb-6 mt-4">
-                                        <input type="text" class="form-control" id="roomId" placeholder="Room ID">
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <button type="submit" class="btn btn-secondary">Submit</button>
-                        </form>
-                        
                         </div>
+                    </div>
+                    <div class="modal-footer">
+
                     </div>
                 </div>
                 {{-- <div class="modal-footer">
@@ -284,8 +279,8 @@
                 </div> --}}
             </div>
         </div>
-    </div>
-    
+    </form>
+
     <div class="fixed-plugin">
         <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
@@ -328,128 +323,10 @@
     <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
     <!-- Black Dashboard DEMO methods, don't include it in your project! -->
     <script src="../assets/demo/demo.js"></script>
-    <script>
-        $(document).ready(function() {
-            $().ready(function() {
-                $sidebar = $('.sidebar');
-                $navbar = $('.navbar');
-                $main_panel = $('.main-panel');
-
-                $full_page = $('.full-page');
-
-                $sidebar_responsive = $('body > .navbar-collapse');
-                sidebar_mini_active = true;
-                white_color = false;
-
-                window_width = $(window).width();
-
-                fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
-
-
-
-                $('.fixed-plugin a').click(function(event) {
-                    if ($(this).hasClass('switch-trigger')) {
-                        if (event.stopPropagation) {
-                            event.stopPropagation();
-                        } else if (window.event) {
-                            window.event.cancelBubble = true;
-                        }
-                    }
-                });
-
-                $('.fixed-plugin .background-color span').click(function() {
-                    $(this).siblings().removeClass('active');
-                    $(this).addClass('active');
-
-                    var new_color = $(this).data('color');
-
-                    if ($sidebar.length != 0) {
-                        $sidebar.attr('data', new_color);
-                    }
-
-                    if ($main_panel.length != 0) {
-                        $main_panel.attr('data', new_color);
-                    }
-
-                    if ($full_page.length != 0) {
-                        $full_page.attr('filter-color', new_color);
-                    }
-
-                    if ($sidebar_responsive.length != 0) {
-                        $sidebar_responsive.attr('data', new_color);
-                    }
-                });
-
-                $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function() {
-                    var $btn = $(this);
-
-                    if (sidebar_mini_active == true) {
-                        $('body').removeClass('sidebar-mini');
-                        sidebar_mini_active = false;
-                        blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
-                    } else {
-                        $('body').addClass('sidebar-mini');
-                        sidebar_mini_active = true;
-                        blackDashboard.showSidebarMessage('Sidebar mini activated...');
-                    }
-
-                    // we simulate the window Resize so the charts will get updated in realtime.
-                    var simulateWindowResize = setInterval(function() {
-                        window.dispatchEvent(new Event('resize'));
-                    }, 180);
-
-                    // we stop the simulation of Window Resize after the animations are completed
-                    setTimeout(function() {
-                        clearInterval(simulateWindowResize);
-                    }, 1000);
-                });
-
-                $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
-                    var $btn = $(this);
-
-                    if (white_color == true) {
-
-                        $('body').addClass('change-background');
-                        setTimeout(function() {
-                            $('body').removeClass('change-background');
-                            $('body').removeClass('white-content');
-                        }, 900);
-                        white_color = false;
-                    } else {
-
-                        $('body').addClass('change-background');
-                        setTimeout(function() {
-                            $('body').removeClass('change-background');
-                            $('body').addClass('white-content');
-                        }, 900);
-
-                        white_color = true;
-                    }
-
-
-                });
-
-                $('.light-badge').click(function() {
-                    $('body').addClass('white-content');
-                });
-
-                $('.dark-badge').click(function() {
-                    $('body').removeClass('white-content');
-                });
-            });
-        });
-    </script>
     <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
-    <script>
-        window.TrackJS &&
-            TrackJS.install({
-                token: "ee6fab19c5a04ac1a32a645abde4613a",
-                application: "black-dashboard-free"
-            });
-    </script>
     <script src="{{ asset('assets/js/myJavascript.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 
 </html>

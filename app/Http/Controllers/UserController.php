@@ -101,9 +101,10 @@ class UserController extends Controller
     {
         $this->authorize('userDelete');
         $user = User::findOrFail($id);
-        // $user->status = 2;
-        // $user->save();
+        $user->status = 2;
+        $user->save();
 
-        echo $user;
+        return redirect()->back()->with('success', 'User Deleted successfully');
+        // echo $user;
     }
 }
