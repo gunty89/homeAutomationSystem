@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    <div class="container" id="container">
-        <div class="form-container sign-in-container">
+    <div class="container" id="container" style="background-color: cadetblue">
+        <div class="form-container sign-in-container" style="background-color: cadetblue">
             <form action="/login" method="POST">
                 @csrf
                 <h1>Sign in</h1>
@@ -42,14 +42,14 @@
                         {{ __('Forgot Your Password?') }}
                     </a>
                 @endif
-                <button>Sign In</button>
+                <button style="background-color: cadetblue">Sign In</button>
             </form>
         </div>
-        <div class="overlay-container">
+        <div class="overlay-container" style="background-color: cadetblue">
             <div class="overlay">
                 <form action="{{ route('signUp') }}" method="GET">
-                    <div class="overlay-panel overlay-right bg-body-secondary">
-                        <h1>Hello, Friend!</h1>
+                    <div class="overlay-panel overlay-right" style="background-color: cadetblue">
+                        <h1>Smart Home </h1>
                         <p>Enter your personal details and start journey with us</p>
                         <button class="ghost" id="signUp">Sign Up</button>
                     </div>

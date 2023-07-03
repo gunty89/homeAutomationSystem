@@ -79,7 +79,7 @@
 
                 <div class="row mb-0">
                     <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" style="background-color: cadetblue">
                             {{ __('Register') }}
                         </button>
                     </div>
@@ -89,7 +89,7 @@
         <div class="overlay-container">
             <div class="overlay">
                 <form action="{{ route('signIn') }}" method="GET">
-                    <div class="overlay-panel overlay-right bg-body-secondary">
+                    <div class="overlay-panel overlay-right" style="background-color: cadetblue">
                         <h1 class="text-black">Hello, Friend!</h1>
                         <p>Already have an Account??</p>
                         <button class="ghost" id="signUp"> Sign In</button>
