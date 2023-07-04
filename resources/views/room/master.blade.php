@@ -45,11 +45,11 @@
                     <div class="collapse navbar-collapse" id="navigation">
                         <ul class="navbar-nav ml-auto">
                             <li class="search-bar input-group">
-                                <button class="btn btn-link" id="search-button" data-toggle="modal"
+                                {{-- <button class="btn btn-link" id="search-button" data-toggle="modal"
                                     data-target="#searchModal">
                                     <i class="tim-icons icon-zoom-split"></i>
                                     <span class="d-lg-none d-md-block">Search</span>
-                                </button>
+                                </button> --}}
                             </li>
 
                             <!-- Room Dropdown Menu -->
@@ -437,6 +437,7 @@
                 application: "black-dashboard-free"
             });
     </script>
+    <script src="{{ asset('assets/js/myJavascript.js') }}"></script>
 </body>
 
 </html>

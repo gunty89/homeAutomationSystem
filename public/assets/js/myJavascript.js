@@ -123,28 +123,28 @@ $(document).ready(function () {
             }
         });
 
-        $('.fixed-plugin .background-color span').click(function () {
-            $(this).siblings().removeClass('active');
-            $(this).addClass('active');
+        // $('.fixed-plugin .background-color span').click(function () {
+        //     $(this).siblings().removeClass('active');
+        //     $(this).addClass('active');
 
-            var new_color = $(this).data('color');
+        //     var new_color = $(this).data('color');
 
-            if ($sidebar.length != 0) {
-                $sidebar.attr('data', new_color);
-            }
+        //     if ($sidebar.length != 0) {
+        //         $sidebar.attr('data', new_color);
+        //     }
 
-            if ($main_panel.length != 0) {
-                $main_panel.attr('data', new_color);
-            }
+        //     if ($main_panel.length != 0) {
+        //         $main_panel.attr('data', new_color);
+        //     }
 
-            if ($full_page.length != 0) {
-                $full_page.attr('filter-color', new_color);
-            }
+        //     if ($full_page.length != 0) {
+        //         $full_page.attr('filter-color', new_color);
+        //     }
 
-            if ($sidebar_responsive.length != 0) {
-                $sidebar_responsive.attr('data', new_color);
-            }
-        });
+        //     if ($sidebar_responsive.length != 0) {
+        //         $sidebar_responsive.attr('data', new_color);
+        //     }
+        // });
 
         $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function () {
             var $btn = $(this);
@@ -197,10 +197,14 @@ $(document).ready(function () {
 
         $('.light-badge').click(function () {
             $('body').addClass('white-content');
+            localStorage.setItem('isLightMode', true)
+            console.log(localStorage.getItem('isLightMode'))
         });
 
         $('.dark-badge').click(function () {
             $('body').removeClass('white-content');
+            localStorage.removeItem('isLightMode')
+            console.log(localStorage.getItem('isLightMode'))
         });
     });
 });
@@ -252,8 +256,22 @@ $(document).ready(function() {
     });
 });
 
+$(window).on('load', function() {
+    let isLightMode =  localStorage.getItem('isLightMode')
+    console.log('Is loading from local storage')
+    console.log(`Is Light mode ${isLightMode}`)
+    console.log( isLightMode === 'true')
+     if(isLightMode === 'true'){
+         console.log('setting light mode')
+         // $('.light-badge').click(function () {
+             $('body').addClass('white-content');
+             // localStorage.setItem('isLightMode', true)
+         // });
+     }
+} )
 
 $(document).ready(function() {
+
     if (session('success')){
         $('#successModal').modal('show'); // Show the modal
         $('#successMessage').fadeIn(1000).delay(3000).fadeOut(1000); // Animate the success message

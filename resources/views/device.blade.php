@@ -45,10 +45,10 @@
                     <div class="collapse navbar-collapse" id="navigation">
                         <ul class="navbar-nav ml-auto">
                             <li class="search-bar input-group">
-                                <button class="btn btn-link" id="search-button" data-toggle="modal"
+                                {{-- <button class="btn btn-link" id="search-button" data-toggle="modal"
                                     data-target="#searchModal"><i class="tim-icons icon-zoom-split"></i>
                                     <span class="d-lg-none d-md-block">Search</span>
-                                </button>
+                                </button> --}}
                             </li>
                             <li class="dropdown nav-item">
                                 <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -186,9 +186,12 @@
                                                     </td>
                                                     <td class="align-middle">
                                                         <div class="dropdown">
-                                                            <div class="dropdown-toggle" data-toggle="dropdown">
+                                                            <span class="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 <i class="fas fa-ellipsis-v"></i>
-                                                            </div>
+                                                              </span>
+                                                              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                                <a class="dropdown-item delete-link" href="#">Delete</a>
+                                                              </div>
                                                             @can('deviceDelete ')
                                                                 <div class="dropdown-menu"
                                                                     aria-labelledby="dropdownMenuButton">
