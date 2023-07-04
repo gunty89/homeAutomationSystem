@@ -120,7 +120,6 @@
             </div>
             <!-- End Navbar -->
             <div class="content">
-
                 <div class="col-12">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
@@ -152,52 +151,55 @@
                                                 onclick="sortTable(0, 'staffTable')">Device Name</th>
                                             <th
                                                 class="text-center text-uppercase text-xxs font-weight-bolder opacity-20">
-                                                Model</th><th
+                                                Model</th>
+                                            <th
                                                 class="text-center text-uppercase text-xxs font-weight-bolder opacity-20">
-                                                Status</th>
+                                                State</th>
                                             <th class="opacity-7">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @if ($devices)
-
                                             @foreach ($devices as $device)
-                                                <tr>
-                                                    <td>
-                                                        <p class="text-xs text-center font-weight- mb-0">
-                                                            {{ $device->name }}</p>
-                                                        <p class="text-xs text-center text-secondary mb-0">
-                                                        </p>
-                                                    </td>
-                                                    <td>
-                                                        <p class="text-xs text-center font-weight- mb-0">
-                                                            {{ $device->model }}</p>
-                                                        <p class="text-xs text-center text-secondary mb-0">
-                                                        </p>
-                                                    </td>
-                                                    <td class="align-middle text-center text-sm">
-                                                        @if ($device->status == 0)
-                                                            <span
-                                                                class="badge badge-sm bg-gradient-success">WORKING</span>
-                                                        @else
-                                                            <span class="badge badge-sm bg-gradient-success"> FAULT
-                                                            </span>
-                                                        @endif
-                                                    </td>
-                                                    <td class="align-middle">
-                                                        <div class="dropdown">
-                                                            <div class="dropdown-toggle" data-toggle="dropdown">
-                                                                <i class="fas fa-ellipsis-v"></i>
-                                                            </div>
-                                                            @can('deviceDelete ')
-                                                                <div class="dropdown-menu"
-                                                                    aria-labelledby="dropdownMenuButton">
-                                                                    <a class="dropdown-item delete-link" href="#">Delete</a>
+                                                @if ($device->status == 0 || $device->status == 1)
+                                                    <tr>
+                                                        <td>
+                                                            <p class="text-xs text-center font-weight- mb-0">
+                                                                {{ $device->name }}</p>
+                                                            <p class="text-xs text-center text-secondary mb-0">
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="text-xs text-center font-weight- mb-0">
+                                                                {{ $device->model }}</p>
+                                                            <p class="text-xs text-center text-secondary mb-0">
+                                                            </p>
+                                                        </td>
+                                                        <td class="align-middle text-center text-sm">
+                                                            @if ($device->state == 0)
+                                                                <span
+                                                                    class="badge badge-sm bg-gradient-success">WORKING</span>
+                                                            @else
+                                                                <span class="badge badge-sm bg-gradient-success"> FAULT
+                                                                </span>
+                                                            @endif
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <div class="dropdown">
+                                                                <div class="dropdown-toggle" data-toggle="dropdown">
+                                                                    <i class="fas fa-ellipsis-v"></i>
                                                                 </div>
-                                                            @endcan
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                                @can('deviceDelete ')
+                                                                    <div class="dropdown-menu"
+                                                                        aria-labelledby="dropdownMenuButton">
+                                                                        <a class="dropdown-item delete-link"
+                                                                            href="#">Delete</a>
+                                                                    </div>
+                                                                @endcan
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endif
                                             @endforeach
                                         @endif
                                     </tbody>
@@ -234,8 +236,8 @@
                                                 <option value="Bulb">Bulb</option>
                                                 <option value="Door">Door</option>
                                                 <option value="Fan">Fan</option>
+                                                <option value="Switch">Switch</option>
                                             </select>
-
                                         </div>
                                     </div>
                                     <div class="col">

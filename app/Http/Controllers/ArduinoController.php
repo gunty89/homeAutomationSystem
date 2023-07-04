@@ -5,32 +5,38 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Device;
 use App\Models\Log;
-
+use App\Models\SensoryData;
 
 class ArduinoController extends Controller
 {
-    public function handleUpdate(Request $request){
-         // Retrieve the necessary data from the request
-    $deviceId = $request->input('deviceId');
-    $status = $request->input('status');
+    public function handleUpdate(Request $request)
+    {
 
-    // Update the device status
-    $device = Device::find($deviceId);
-    if ($device) {
-        $device->status = $status;
-        $device->save();
 
-        // Create a new log entry
-        Log::create([
-            'deviceId' => $device->deviceId,
-            'action' => ($status == 1) ? 'Device turned on' : 'Device turned off',
-            'date' => now(),
+        $incomingPacket = $_REQUEST["packet"];
+        $deviceData = (explode(":", $incomingPacket));
+        
+
+        SensoryData::create([
+            'smarDeviceId' => 76842,
+            'temperature' => $deviceData[0],
+            'lightLevel' => $deviceData[1],
+            'humidity' => $deviceData[2],
+            'collectedTime' => $deviceData[3],
         ]);
 
-        return response()->json(['message' => 'Update successful']);
-    }
 
-    return response()->json(['message' => 'Device not found'], 404);
+         $devices = Device::whereIn('id', [1, 2, 3, 4])->get();
+
+         foreach ($devices as $index => $device) {
+             $status = $deviceData[$index + 4];
+             $device->status = $status;
+             $device->save();
+         }
+
+
+
+        return response()->json(['message' => 'Device not found'], 404);
     }
     //
 }

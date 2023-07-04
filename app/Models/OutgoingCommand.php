@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Log extends Model
+class OutgoingCommand extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'logId';
+    protected $table = 'outgoingCommands';
 
     protected $fillable = [
-        'userId', 'deviceId', 'action', 'date'
+        'id', 'command', 'deviceId',
     ];
-
 }

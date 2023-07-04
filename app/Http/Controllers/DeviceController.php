@@ -58,8 +58,8 @@ class DeviceController extends Controller
                 $device->model = 'Sliding';
             } elseif ($request->input('deviceName') == 'Fan') {
                 $device->model = 'Ceiling';
-            }else{
-
+            }elseif($request->input('deviceName') == 'Switch'){
+                $device->model = 'Smart';
             }
             $device->state = 0;
 

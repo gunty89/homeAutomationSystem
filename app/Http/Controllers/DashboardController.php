@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Device;
 use App\Models\Log;
+use App\Models\OutgoingCommand;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -83,25 +84,40 @@ class DashboardController extends Controller
         // Update the status
         if ($device->status == 0) {
             $device->status = 1;
+            $command = 1;
+            $format = "command: " . $command . " deviceId: " . $device->deviceId;
+            //Create a new Outgoing Command
+            OutgoingCommand::create([
+                'command' => $command,
+                'deviceId' => $device->deviceId,
+            ]);
             if ($device->name == 'Fan') {
-                $action = 'Fan turned off';
-            }elseif($device->name == 'Bulb') {
-                $action = 'Bulb turned off';
-            }elseif($device->name == 'Door'){
-                $action = 'Door Closed';
-            }else{
-
+                $action = 'Fan turned On';
+            } elseif ($device->name == 'Bulb') {
+                $action = 'Bulb turned On';
+            } elseif ($device->name == 'Door') {
+                $action = 'Door Opened';
+            } elseif ($device->name == 'Switch') {
+                $action = 'Switch turned On';
+            } else {
             }
         } elseif ($device->status == 1) {
             $device->status = 0;
+            $command = 0;
+            $format = "command: " . $command . " deviceId: " . $device->deviceId;
+            //Create a new Outgoing Command
+            OutgoingCommand::create([
+                'command' => $command,
+                'deviceId' => $device->deviceId,
+            ]);
             if ($device->name == 'Fan') {
                 $action = 'Fan turned off';
-            }elseif($device->name == 'Bulb') {
+            } elseif ($device->name == 'Bulb') {
                 $action = 'Bulb turned off';
-            }elseif($device->name == 'Door'){
+            } elseif ($device->name == 'Door') {
                 $action = 'Door Closed';
-            }else{
-
+            } elseif ($device->name == 'Switch') {
+                $action = 'Switch turned off';
             }
         } else {
             // Handle the case when the device status is neither 0 nor 1
@@ -119,9 +135,9 @@ class DashboardController extends Controller
             'date' => now(),
         ]);
 
+    
         // Redirect back to the previous page
         return back();
-
     }
 
     /**
@@ -132,11 +148,5 @@ class DashboardController extends Controller
      */
     public function destroy($id)
     {
-
-
-
-
-
-
     }
 }

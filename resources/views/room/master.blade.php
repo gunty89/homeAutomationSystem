@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <title> Home Automation System    </title>
+    <title> Home Automation System </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -58,11 +58,14 @@
                                     <b>ROOMS</b>
                                 </a>
                                 <ul class="dropdown-menu dropdown-navbar">
-                                    <li class="nav-link"><a href="{{ route('dashboard.index') }}" class="nav-item dropdown-item">Sitting Room</a>
+                                    <li class="nav-link"><a href="{{ route('dashboard.index') }}"
+                                            class="nav-item dropdown-item">Sitting Room</a>
                                     </li>
-                                    <li class="nav-link"><a href="{{ route('dashboard.show',  2) }}" class="nav-item dropdown-item">Master Room</a>
+                                    <li class="nav-link"><a href="{{ route('dashboard.show', 2) }}"
+                                            class="nav-item dropdown-item">Master Room</a>
                                     </li>
-                                    <li class="nav-link"><a href="{{ route('dashboard.show', 3) }}" class="nav-item dropdown-item">Store Room</a>
+                                    <li class="nav-link"><a href="{{ route('dashboard.show', 3) }}"
+                                            class="nav-item dropdown-item">Store Room</a>
                                     </li>
                                 </ul>
                             </li>
@@ -103,7 +106,8 @@
                                         </a>
                                     </li>
                                     <li class="nav-link">
-                                        <a href="{{ url('/profile/password')}}" class="nav-item dropdown-item">Change Password
+                                        <a href="{{ url('/profile/password') }}" class="nav-item dropdown-item">Change
+                                            Password
                                         </a>
                                     </li>
                                     <li class="dropdown-divider"></li>
@@ -169,95 +173,102 @@
                 <div class="row">
                     @if ($devices)
                         @foreach ($devices as $device)
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h3>{{ $device->name }}</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="container text-center">
-                                            @if ($device->status == 0)
-                                                @if ($device->name == 'Door')
-                                                    <div class="h3 text-success text-muted">
-                                                        STATUS : OPENED </div>
-                                                    <form action="{{ route('dashboard.update', $device->deviceId) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <div class="container">
-                                                            <button type="submit" class="btn btn-secondary btn-md">
-                                                                <i class="fa fa-fan"></i> Close
-                                                            </button>
+                            @if ($device->status == 0 || $device->status == 1)
+                                <div class="col-lg-4">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3>{{ $device->name }}</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="container text-center">
+                                                @if ($device->status == 1)
+                                                    @if ($device->name == 'Door')
+                                                        <div class="h3 text-success text-muted">
+                                                            STATUS : OPENED </div>
+                                                        <form
+                                                            action="{{ route('dashboard.update', $device->deviceId) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="container">
+                                                                <button type="submit"
+                                                                    class="btn btn-secondary btn-md">
+                                                                    <i class="fa fa-fan"></i> Close
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                        <div class="card-footer">
+                                                            <br>
                                                         </div>
-                                                    </form>
-                                                    <div class="card-footer">
-                                                        <br>
-                                                    </div>
-                                                    <div class="chart-area">
-                                                        <!---- <canvas id="CountryChart"></canvas>-->
-                                                    </div>
-                                                @elseif ($device->name == 'Bulb' || $device->name == 'Fan')
-                                                    <div class="h3 text-success text-muted">
-                                                        STATUS : ON </div>
-                                                    <form action="{{ route('dashboard.update', $device->deviceId) }}"
-                                                        method="post">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <div class="container"><button type="submit"
-                                                                class="btn btn-secondarybtn-md">
-                                                                <i class="fa fa-fan"></i> Turn Off
-                                                            </button>
+                                                        <div class="chart-area">
+                                                            <!---- <canvas id="CountryChart"></canvas>-->
                                                         </div>
-                                                    </form>
-                                                    <div class="card-footer">
-                                                        <br>
-                                                    </div>
-                                                    <div class="chart-area">
-                                                        <!---- <canvas id="CountryChart"></canvas>-->
-                                                    </div>
+                                                    @elseif ($device->name == 'Bulb' || $device->name == 'Fan')
+                                                        <div class="h3 text-success text-muted">
+                                                            STATUS : ON </div>
+                                                        <form
+                                                            action="{{ route('dashboard.update', $device->deviceId) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="container"><button type="submit"
+                                                                    class="btn btn-secondarybtn-md">
+                                                                    <i class="fa fa-fan"></i> Turn Off
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                        <div class="card-footer">
+                                                            <br>
+                                                        </div>
+                                                        <div class="chart-area">
+                                                            <!---- <canvas id="CountryChart"></canvas>-->
+                                                        </div>
+                                                    @endif
+                                                @else
+                                                    @if ($device->name == 'Door')
+                                                        <div class="h3 text-success text-muted">
+                                                            STATUS : CLOSED </div>
+                                                        <form
+                                                            action="{{ route('dashboard.update', $device->deviceId) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="container"><button type="submit"
+                                                                    class="btn btn-secondary btn-md">
+                                                                    <i class="fa fa-fan"></i> Open
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                        <div class="card-footer">
+                                                            <br>
+                                                        </div>
+                                                    @elseif ($device->name == 'Bulb' || $device->name == 'Fan')
+                                                        <div class="h3 text-success text-muted">
+                                                            STATUS : OFF </div>
+                                                        <form
+                                                            action="{{ route('dashboard.update', $device->deviceId) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="container"><button
+                                                                    class="btn btn-secondarybtn-md">
+                                                                    <i class="fa fa-fan"></i> Turn On
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                        <div class="card-footer">
+                                                            <br>
+                                                        </div>
+                                                        <div class="chart-area">
+                                                            <!---- <canvas id="CountryChart"></canvas>-->
+                                                        </div>
+                                                    @endif
                                                 @endif
-                                            @else
-                                                @if ($device->name == 'Door')
-                                                    <div class="h3 text-success text-muted">
-                                                        STATUS : CLOSED </div>
-                                                    <form action="{{ route('dashboard.update', $device->deviceId) }}"
-                                                        method="post">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <div class="container"><button type="submit"
-                                                                class="btn btn-secondary btn-md">
-                                                                <i class="fa fa-fan"></i> Open
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                    <div class="card-footer">
-                                                        <br>
-                                                    </div>
-                                                @elseif ($device->name == 'Bulb' || $device->name == 'Fan')
-                                                    <div class="h3 text-success text-muted">
-                                                        STATUS : OFF </div>
-                                                    <form action="{{ route('dashboard.update', $device->deviceId) }}"
-                                                        method="post">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <div class="container"><button
-                                                                class="btn btn-secondarybtn-md">
-                                                                <i class="fa fa-fan"></i> Turn On
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                    <div class="card-footer">
-                                                        <br>
-                                                    </div>
-                                                    <div class="chart-area">
-                                                        <!---- <canvas id="CountryChart"></canvas>-->
-                                                    </div>
-                                                @endif
-                                            @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
                         @endforeach
                     @endif
                 </div>
