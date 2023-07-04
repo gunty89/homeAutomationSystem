@@ -128,5 +128,7 @@
                 </div>
             </div>
         </div>
+        <script src="../assets/js/core/jquery.min.js"></script>
+        <script src="{{ asset('assets/js/myJavascript.js') }}"></script>
     </body>
 </html>

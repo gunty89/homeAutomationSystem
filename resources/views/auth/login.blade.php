@@ -11,6 +11,13 @@
 </head>
 
 <body>
+    <div class="container1">
+        <style>
+            .container1{
+                background-image: url('/assets/img/Sitting.jpg');
+            }
+
+        </style>
     <div class="container" id="container" style="background-color: cadetblue">
         <div class="form-container sign-in-container" style="background-color: cadetblue">
             <form action="/login" method="POST">
@@ -57,6 +64,7 @@
             </div>
         </div>
     </div>
+</div>
 
     <script src="{{ asset('assets/js/myJavascript.js') }}"></script>
 </body>

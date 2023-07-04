@@ -80,7 +80,7 @@
             </div>
         </div>
     </div>
-
+    <script src="../assets/js/core/jquery.min.js"></script>
     <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
     <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
@@ -93,9 +93,8 @@
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{asset('assets/js/argon-dashboard.min.js')}}"></script>
     <!-- myJavascript-->
-    <script src="{{asset('assets/js/myJavascript.js')}}"></script>
     {{-- @include('sweetalert::alert') --}}
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('assets/js/myJavascript.js')}}"></script>
 </body>
 </html>

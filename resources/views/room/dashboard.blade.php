@@ -24,7 +24,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>
-        Black Dashboard
+        SMART HOME
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
@@ -33,11 +33,11 @@
     <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
     <!-- CSS Files -->
     <link href="{{ asset('assets/css/black-dashboard.css?v=1.0.0') }}" rel="stylesheet" />
-    <!-- CSS Just for demo purpose, don't include it in your project -->
+    
     <link href="{{ asset('assets/demo/demo.css') }}" rel="stylesheet" />
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     <script>
-        // Enable pusher logging - don't include this in production
+        // Enable pusher logging 
         Pusher.logToConsole = true;
 
         var pusher = new Pusher('ce77aa1765616f22248a', {
@@ -77,11 +77,11 @@
                     <div class="collapse navbar-collapse" id="navigation">
                         <ul class="navbar-nav ml-auto">
                             <li class="search-bar input-group">
-                                <button class="btn btn-link" id="search-button" data-toggle="modal"
+                                {{-- <button class="btn btn-link" id="search-button" data-toggle="modal"
                                     data-target="#searchModal">
                                     <i class="tim-icons icon-zoom-split"></i>
                                     <span class="d-lg-none d-md-block">Search</span>
-                                </button>
+                                </button> --}}
                             </li>
 
                             <!-- Room Dropdown Menu -->

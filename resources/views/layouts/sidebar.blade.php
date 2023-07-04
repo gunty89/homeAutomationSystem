@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar" data='green'>
     <!-- Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red"-->
     <div class="sidebar-wrapper" style="background-color: cadetblue">
         <div class="logo">
@@ -11,13 +11,13 @@
             <li class="">
                 <a href="{{ url('/dashboard') }}">
                     <i class="tim-icons icon-chart-pie-36"></i>
-                    <p>Dashboard</p>
+                    <p><strong>Dashboard</strong></p>
                 </a>
             </li>
             <li>
                 <a href="{{ url('/user') }}">
                     <i class="tim-icons icon-single-02"></i>
-                    <p>User</p>
+                    <p><strong>User</strong></p>
                 </a>
             </li>
 
